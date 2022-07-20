@@ -1008,3 +1008,35 @@ model users {
   mobileotp          String? @db.VarChar(250)
   emailotp           String? @db.VarChar(250)
 }
+
+
+
+
+model products {
+  z_id               String  @id @db.VarChar(100)
+  client             String? @db.VarChar(100)
+  lang               String? @db.VarChar(100)
+  applicationid      String? @db.VarChar(100)
+  t_id               String  @db.VarChar(100)
+  yarntype           String? @db.VarChar(100)
+  count              String? @db.VarChar(100)
+  type               String? @db.VarChar(100)
+  quality            String? @db.VarChar(100)
+  nature             String? @db.VarChar(100)
+  composition1       String? @db.VarChar(100)
+  percentage1        String? @db.VarChar(100)
+  composition2       String? @db.VarChar(100)
+  percentage2        String? @db.VarChar(100)
+  tolerance          String? @db.VarChar(100)
+  diff               String? @db.VarChar(100)
+  cdate              String? @db.VarChar(100)
+  ctime              String? @db.VarChar(100)
+  cuser              String? @db.VarChar(100)
+  udate              String? @db.VarChar(100)
+  utime              String? @db.VarChar(100)
+  uuser              String? @db.VarChar(100)
+  ddate              String? @db.VarChar(100)
+  dtime              String? @db.VarChar(100)
+  duser              String? @db.VarChar(100)
+  isdel              String? @db.VarChar(100)
+}
