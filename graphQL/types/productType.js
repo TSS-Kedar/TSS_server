@@ -121,7 +121,17 @@ type oFileType
             lang: String ,
             z_id: String,
             t_id:  String,
-          
+            yarntype: String          ,
+            count: String              ,
+            type: String               ,
+            quality: String            ,
+            nature: String             ,
+            composition1: String       ,
+            percentage1: String        ,
+            composition2: String       ,
+            percentage2: String        ,
+            tolerance: String          ,
+            diff: String ,   
             username   :   String,
            
          )  : ProductType
