@@ -53,7 +53,8 @@ type oFileType
             tolerance: String          ,
             diff: String ,  
             
-
+            purposevariety: String,
+            slug:String,
 
             cdate       :   String,
             ctime       :   String,
@@ -87,6 +88,8 @@ type oFileType
             percentage2: String        ,
             tolerance: String          ,
             diff: String ,   
+            purposevariety: String,
+            slug:String,
             cdate       :   String,
             ctime       :   String,
             cuser       :   String,
@@ -132,6 +135,8 @@ type oFileType
             percentage2: String        ,
             tolerance: String          ,
             diff: String ,   
+            purposevariety: String,
+            slug:String,
             username   :   String,
            
          )  : ProductType
