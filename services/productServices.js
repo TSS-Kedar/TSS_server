@@ -38,7 +38,7 @@ import authenticationJWT from '../services/authenticationJWT'
 
 
 
-    if (!name) { throw new Error('You must provide and name.'); }
+    if (!yarntype) { throw new Error('You must provide and yarntype.'); }
   
     const prisma = new PrismaClient()
 
@@ -195,7 +195,7 @@ import authenticationJWT from '../services/authenticationJWT'
   ) => {
 
     const {login_username} =context;
-    authenticationJWT.checkUser(login_username);
+   // authenticationJWT.checkUser(login_username);
 
     const { applicationid, client, lang, username, z_id } =dataJSON;
 
