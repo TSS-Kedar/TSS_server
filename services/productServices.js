@@ -19,7 +19,7 @@ import authenticationJWT from '../services/authenticationJWT'
 
      const {login_username} =context;
      
-     authenticationJWT.checkUser(login_username);
+    // authenticationJWT.checkUser(login_username);
      console.log(dataJSON)
     const { applicationid, client, lang, z_id, t_id,
         yarntype          ,
@@ -66,7 +66,8 @@ import authenticationJWT from '../services/authenticationJWT'
         percentage2        ,
         tolerance          ,
         diff    ,
-        slug           
+        slug    ,
+        purposevariety       
            
       },'I',login_username);
  
@@ -93,7 +94,8 @@ import authenticationJWT from '../services/authenticationJWT'
         percentage2        ,
         tolerance          ,
         diff      ,
-        slug              
+        slug     ,
+        purposevariety         
 
       },'U',login_username);
       const productUpdated = await prisma.products.update({
@@ -126,7 +128,7 @@ import authenticationJWT from '../services/authenticationJWT'
     const { applicationid, client, lang, z_id } = args
   
     const {login_username} =context;
-    authenticationJWT.checkUser(login_username);
+    //authenticationJWT.checkUser(login_username);
 
 
       try {
