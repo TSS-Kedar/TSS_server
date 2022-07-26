@@ -937,6 +937,7 @@ model products {
   diff           String? @db.VarChar(100)
   purposevariety String? @db.VarChar(100)
   slug           String? @db.VarChar(100)
+  blendtype      String? @db.VarChar(100)
   cdate          String? @db.VarChar(100)
   ctime          String? @db.VarChar(100)
   cuser          String? @db.VarChar(100)

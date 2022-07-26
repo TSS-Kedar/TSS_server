@@ -55,6 +55,7 @@ type oFileType
             
             purposevariety: String,
             slug:String,
+            blendtype: String,
 
             cdate       :   String,
             ctime       :   String,
@@ -90,6 +91,7 @@ type oFileType
             diff: String ,   
             purposevariety: String,
             slug:String,
+            blendtype: String,
             cdate       :   String,
             ctime       :   String,
             cuser       :   String,
@@ -137,6 +139,7 @@ type oFileType
             diff: String ,   
             purposevariety: String,
             slug:String,
+            blendtype: String,
             username   :   String,
            
          )  : ProductType

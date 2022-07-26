@@ -34,7 +34,8 @@ import authenticationJWT from '../services/authenticationJWT'
         tolerance          ,
         diff  ,
         purposevariety,
-        slug              } = dataJSON;
+        slug  ,
+        blendtype            } = dataJSON;
 
 
 
@@ -67,7 +68,8 @@ import authenticationJWT from '../services/authenticationJWT'
         tolerance          ,
         diff    ,
         slug    ,
-        purposevariety       
+        purposevariety   ,
+        blendtype    
            
       },'I',login_username);
  
@@ -95,7 +97,8 @@ import authenticationJWT from '../services/authenticationJWT'
         tolerance          ,
         diff      ,
         slug     ,
-        purposevariety         
+        purposevariety ,
+        blendtype         
 
       },'U',login_username);
       const productUpdated = await prisma.products.update({
