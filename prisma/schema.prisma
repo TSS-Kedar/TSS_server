@@ -974,10 +974,10 @@ category	          String? @db.VarChar(100)
 address	            String? @db.VarChar(100)
 completeaddress	    String? @db.VarChar(100)
 gstnumber	          String? @db.VarChar(100)
-gst_files	          String? @db.VarChar(100)
+gst_files	          Json?
 tannumber	          String? @db.VarChar(100)
 businesspannumber	  String? @db.VarChar(100)
-pan_files	          String? @db.VarChar(100)
+pan_files	          Json?
 cdate	              String? @db.VarChar(100)
 ctime	              String? @db.VarChar(100)
 cuser	              String? @db.VarChar(100)
