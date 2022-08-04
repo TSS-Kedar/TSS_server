@@ -14,7 +14,8 @@ import docDetailTypes from './docDetailTypes';
 import user_type from './user_type';
 import docType from './docType';
 import stockType from './stockType';
-import recommendationType from './recommendationType'
+import recommendationType from './recommendationType';
+import supplierType from './supplierType';
 import productType from './productType'
 // Merge all of the types together
 const types = [
@@ -27,7 +28,8 @@ const types = [
                 docType,
                 stockType,
                 recommendationType,
-                productType
+                productType,
+                supplierType
               ];
   
 // NOTE: 2nd param is optional, and defaults to false
