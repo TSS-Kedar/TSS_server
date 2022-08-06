@@ -135,7 +135,7 @@ pan_files
 
           z_id
         },
-        data: supplierUpdated
+        data: suppliertobeUpdated
       })
 
       await prisma.$disconnect();
