@@ -13,6 +13,7 @@ import  merge from 'lodash/merge';
 import authenticationResolvers from './authenticationResolvers';
 import Product from './productResolver'
 import Supplier from './supplierResolver'
+import Buyer from './buyerResolver'
 import Rcecommendation from './recommendationResolver'
 import masterdatResolvers from './masterdataResolvers'
 
@@ -26,7 +27,10 @@ const resolvers = merge(
                             Product.Mutation,
                             Product.Query,
                             Supplier.Mutation,
-                            Supplier.Query
+                            Supplier.Query,
+                            Buyer.Mutation,
+                            Buyer.Query
+                            
                         );
 
 // Export merged resolvers
