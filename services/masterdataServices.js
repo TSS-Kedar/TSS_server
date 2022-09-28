@@ -2,7 +2,7 @@ import {
   getStocksQry 
 } from '../common/sqlQueries';
 
-import { PrismaClient } from '.prisma/client/index';
+import { PrismaClient } from '@prisma/client';
 
 
 
