@@ -14,6 +14,7 @@ import authenticationResolvers from './authenticationResolvers';
 import Product from './productResolver'
 import Supplier from './supplierResolver'
 import Buyer from './buyerResolver'
+import Requirement from './requirementResolver'
 import Rcecommendation from './recommendationResolver'
 import masterdatResolvers from './masterdataResolvers'
 
@@ -29,7 +30,9 @@ const resolvers = merge(
                             Supplier.Mutation,
                             Supplier.Query,
                             Buyer.Mutation,
-                            Buyer.Query
+                            Buyer.Query,
+                            Requirement.Mutation,
+                            Requirement.Query
                             
                         );
 
