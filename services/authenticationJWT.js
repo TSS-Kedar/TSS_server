@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-//test 30
+//test lcient 30
 
 import bcrypt from 'bcrypt';
 import jwt from 'jwt-simple';
