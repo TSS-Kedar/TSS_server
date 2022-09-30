@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 
+
 import bcrypt from 'bcrypt';
 import jwt from 'jwt-simple';
 //import { PrismaClient } from '@prisma/client';
