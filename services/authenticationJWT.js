@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
+//test lcient 30
 
 import bcrypt from 'bcrypt';
 import jwt from 'jwt-simple';
@@ -10,7 +11,7 @@ import masterdataServices from '../services/masterdataServices';
 import datetimeService from '../services/dateTimeServices'; 
 const secretKey = 'aaabbbccc';
 import fast2sms from 'fast-two-sms';
-
+//30
 
 const getUsername = async (req) =>
 {
