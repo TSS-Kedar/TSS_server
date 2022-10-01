@@ -5,12 +5,37 @@ dotenv.config();
 
 import masterdataServices from '../services/masterdataServices';
 import { PrismaClient } from '@prisma/client';
-
+import bcrypt from 'bcrypt';
 import datetimeService from '../services/dateTimeServices'; 
 import authenticationJWT from '../services/authenticationJWT'
+const secretKey = 'aaabbbccc';
+import fast2sms from 'fast-two-sms';
 
 
+const sendSMS = async ({ message, contactNumber }, next) => {
+  try {
+    const res = await fast2sms.sendMessage({
+      authorization: process.env.FAST2SMS,
+      message,
+      numbers: [contactNumber],
+    });
+    console.log(res);
+  } catch (error) {
+    next(error);
+  }
+};
 
+
+const generateOTP = (otp_length) => {
+  // Declare a digits variable
+  // which stores all digits
+  var digits = "0123456789";
+  let OTP = "";
+  for (let i = 0; i < otp_length; i++) {
+    OTP += digits[Math.floor(Math.random() * 10)];
+  }
+  return OTP;
+};
 
 
 
@@ -298,6 +323,94 @@ buyertobeApproved
 
   }
 
-  export default {deleteBuyer,buyers,saveBuyer,approveBuyer}
+
+
+
+
+  const sendBuyerMobileOTPJWT = async (buyerData, context) => {
+
+    
+  console.log(buyerData)
+  
+    if (!buyerData.primarynumber) {
+      throw new Error('You must provide mobile number.');
+    }
+  
+    const prisma = new PrismaClient()
+  
+  
+  
+    const buyerCount = await prisma.buyers.count({
+      where: {
+        applicationid: buyerData.applicationid,
+        lang: buyerData.lang,
+        client: buyerData.client,
+        primarynumber: buyerData.primarynumber
+      }
+    })
+    
+    if (buyerCount >= 1) {
+      throw new Error('Buyer already registered.');
+    }
+    else {
+      
+      const mobileotp = generateOTP(6);
+      const salt = await bcrypt.genSalt(10);
+      const hashmobileotp = await bcrypt.hash(mobileotp, salt);
+     
+  
+      console.log('mobileotp',mobileotp)
+
+
+      buyerData.verificationuser=hashmobileotp;
+     
+  
+          await sendSMS(
+        {
+          message: `Your OTP is ${mobileotp}`,
+          contactNumber: buyerData.primarynumber,
+        }
+      );
+  
+      await prisma.$disconnect()
+
+      return buyerData;
+  
+    }
+  
+  }
+
+
+
+
+
+  const verifyBuyerMobileOTPJWT = async (buyerData, context) => {
+
+    const { primarynumber,mobileotp,verificationuser } = buyerData;
+  
+  
+    if (!buyerData.verificationuser || !buyerData.mobileotp) {
+      throw new Error('You must provide an mobile number and mobileotp.');
+    }
+  
+      let validMobileotp = await bcrypt.compare(mobileotp, buyerData.verificationuser);
+      if (validMobileotp) {
+  
+      
+        return buyerData
+      }
+      else {
+        throw new Error('Invalid Mbile number & OTP');
+      }
+  
+  
+    }
+  
+  
+  
+
+  
+
+  export default {deleteBuyer,buyers,saveBuyer,approveBuyer,sendBuyerMobileOTPJWT,verifyBuyerMobileOTPJWT}
 
 

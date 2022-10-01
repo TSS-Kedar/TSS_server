@@ -21,7 +21,9 @@ const resolvers =
         // Resolver for uploadDocuments(input) : String
         saveBuyer : buyerService.saveBuyer,
         deleteBuyer : buyerService.deleteBuyer,
-        approveBuyer:buyerService.approveBuyer
+        approveBuyer:buyerService.approveBuyer,
+        sendBuyerMobileOTPJWT:buyerService.sendBuyerMobileOTPJWT,
+        verifyBuyerMobileOTPJWT:buyerService.verifyBuyerMobileOTPJWT
       
     }
 };
