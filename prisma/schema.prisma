@@ -800,9 +800,11 @@ model allcapdata {
 
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 model abc {
-  cCC String? @db.VarChar(100)
-  def String? @db.VarChar(100)
+  cCC   String? @db.VarChar(100)
+  def   String? @db.VarChar(100)
+  buyid Int     @default(autoincrement()) @db.UnsignedInt
 
+  @@index([buyid], map: "buyid")
   @@ignore
 }
 
@@ -996,6 +998,7 @@ model buyers {
   client             String? @db.VarChar(100)
   lang               String? @db.VarChar(100)
   t_id               String? @db.VarChar(100)
+  buyid              String? @db.VarChar(100)
   supid              String? @db.VarChar(100)
   firstname          String? @db.VarChar(100)
   lastname           String? @db.VarChar(100)
@@ -1036,6 +1039,9 @@ model buyers {
   dtime              String? @db.VarChar(100)
   duser              String? @db.VarChar(100)
   isdel              String? @db.VarChar(100)
+  buyidno            Int     @default(autoincrement()) @db.UnsignedInt
+
+  @@index([buyidno], map: "buyidno")
 }
 
 model requirements {

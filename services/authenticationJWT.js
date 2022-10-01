@@ -541,6 +541,10 @@ const users = async (args, context, info) => {
 }
 
 
+
+
+
+
 const saveUsername =
   async (
     userData,
@@ -633,6 +637,97 @@ const saveUsername =
 
 
 
+  const saveUsername1 =
+  async (
+    userData,
+    context
+  ) => {
+
+
+    const { email, password, applicationid, client, lang, mobile, username, firstname, lastname, userauthorisations, status, z_id } = userData;
+    const {login_username} =context;
+        
+    if (!userData.username || !userData.password) {
+      throw new Error('You must provide an username and password.');
+    }
+
+    const prisma = new PrismaClient()
+
+    const userCount = await prisma.users.count({
+      where: {
+        applicationid: userData.applicationid,
+        lang: userData.lang,
+        client: userData.client,
+        username: userData.username
+      }
+    })
+
+    await prisma.$disconnect();
+
+
+    if (userCount >= 1) {
+
+
+      const prisma = new PrismaClient()
+
+      const salt = await bcrypt.genSalt(10);
+      const hashPassword = await bcrypt.hash(password, salt);
+      const userTobeUpdated = datetimeService.setDateUser({
+        client,
+        lang,
+        applicationid,
+        username,
+        password: hashPassword,
+        mobile,
+        email,
+        firstname, lastname, userauthorisations, status
+      },"U",login_username);
+
+      const userUpdated = await prisma.users.update({
+
+        where: {
+
+          z_id
+        },
+        data: userTobeUpdated
+      })
+
+      await prisma.$disconnect();
+      return userUpdated;
+
+    }
+    else {
+
+      const prisma = new PrismaClient()
+      const _idGenerated = await masterdataServices.getUniqueID();
+      const salt = await bcrypt.genSalt(10);
+      const hashPassword = await bcrypt.hash(password, salt);
+      const userTobeCreated = datetimeService.setDateUser({
+        z_id: _idGenerated,
+        client,
+        lang,
+        applicationid,
+        username,
+        password: hashPassword,
+        mobile,
+        email,
+        firstname, lastname, userauthorisations, status
+      },"I",login_username);
+
+      const userCreated = await prisma.users.create({
+        data: userTobeCreated
+      })
+      await prisma.$disconnect();
+      return userCreated;
+    }
+
+
+
+  }
+
+
+
+
 export default {
   generateTokenUser,
   signUpUsernameJWT,
@@ -651,5 +746,6 @@ export default {
   users,
   deleteUsername,
   getUsername,
-  checkUser
+  checkUser,
+  saveUsername1
 }

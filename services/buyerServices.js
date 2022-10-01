@@ -121,6 +121,9 @@ pan_files
       const buyerCreated = await prisma.buyers.create({
         data: buyertobeCreated
       })
+
+     
+
       await prisma.$disconnect();
       return buyerCreated;
 
@@ -176,6 +179,23 @@ pan_files
   }
 
 
+
+  const getBuyerNo = async (para) =>
+{
+
+    try 
+    {
+        const prisma = new PrismaClient()
+        const result = await prisma.$queryRaw`select buyidno from buyers where z_id=${para.z_id}`
+       await prisma.$disconnect();
+       return result;        
+    } 
+    catch (error) 
+    {
+        return error;    
+    }
+
+}
 
 
 
@@ -301,12 +321,32 @@ lang
 
       },'U',login_username);
       
-	let objDtTm=datetimeService.getDtTmObj();
+  let objDtTm=datetimeService.getDtTmObj();
+  
+
+
+  //let result = await getBuyerNo({z_id:buyerCreated.z_id});
+
+
+  const result = await buyers({z_id,
+    applicationid,
+    client,
+    lang},context)
+
+  console.log(result[0].buyidno)
+
+
+
+
+
+
 	
 	buyertobeApproved.apprstatus='Approved';
 	buyertobeApproved.apprdate=objDtTm.dt;
 	buyertobeApproved.apprtime=objDtTm.tm;
-	buyertobeApproved.appruser=login_username;
+  buyertobeApproved.appruser=login_username;
+  buyertobeApproved.buyid='BUY'+result[0].buyidno
+
 console.log(buyertobeApproved);
 	const buyerUpdated = await prisma.buyers.update({
 
@@ -317,6 +357,12 @@ console.log(buyertobeApproved);
         data: 
 buyertobeApproved
       })
+
+      
+  await authenticationJWT.saveUsername1(
+  { email:result[0].email, password:'abc123', applicationid, client, lang, mobile:result[0].primarynumber, username:'BUY'+result[0].buyidno, firstname:result[0].firstname, lastname:result[0].lastname, userauthorisations:'Buyer', status:'active', z_id:'' }
+    
+    ,context)
 
       await prisma.$disconnect();
       return buyerUpdated;
