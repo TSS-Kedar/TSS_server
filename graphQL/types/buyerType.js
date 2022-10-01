@@ -155,6 +155,37 @@ isdel	: String
          )  : BuyerType
 
   
+         approveBuyer
+         (
+            applicationid : String,
+            client: String ,
+            lang: String ,
+            buyid:String,
+            z_id:String
+         )  : BuyerType
+
+
+         sendBuyerMobileOTPJWT
+         (
+            applicationid : String,
+            client: String ,
+            lang: String ,
+            buyid:String,
+            z_id:String,
+            primarynumber:String,
+         )  : BuyerType
+
+         verifyBuyerMobileOTPJWT
+         (
+            applicationid : String,
+            client: String ,
+            lang: String ,
+            buyid:String,
+            z_id:String,
+            primarynumber:String,
+            mobileotp:String,
+            verificationuser:String
+         )  : BuyerType
 
 
     }
