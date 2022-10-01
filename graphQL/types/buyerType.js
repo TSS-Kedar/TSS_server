@@ -155,7 +155,14 @@ isdel	: String
          )  : BuyerType
 
   
-
+         approveBuyer
+         (
+            applicationid : String,
+            client: String ,
+            lang: String ,
+            buyid:String,
+            z_id:String
+         )  : BuyerType
 
     }
 

@@ -248,6 +248,56 @@ pan_files
 
   }
 
-  export default {deleteBuyer,buyers,saveBuyer}
+
+
+  const  approveBuyer =
+  async (dataJSON,context) => {
+
+     const {login_username} =context;
+     console.log('123')
+    // authenticationJWT.checkUser(login_username);
+     console.log(dataJSON)
+    const {   z_id,
+applicationid,
+client,
+lang
+    } = dataJSON;
+
+
+
+    if (!z_id) { throw new Error('Buyer ID is must.'); }
+  
+    const prisma = new PrismaClient()
+
+	
+    
+
+      let buyertobeApproved=datetimeService.setDateUser(  {
+
+      },'U',login_username);
+      
+	let objDtTm=datetimeService.getDtTmObj();
+	
+	buyertobeApproved.apprstatus='Approved';
+	buyertobeApproved.apprdate=objDtTm.dt;
+	buyertobeApproved.apprtime=objDtTm.tm;
+	buyertobeApproved.appruser=login_username;
+console.log(buyertobeApproved);
+	const buyerUpdated = await prisma.buyers.update({
+
+        where: {
+
+          z_id
+        },
+        data: 
+buyertobeApproved
+      })
+
+      await prisma.$disconnect();
+      return buyerUpdated;
+
+  }
+
+  export default {deleteBuyer,buyers,saveBuyer,approveBuyer}
 
 

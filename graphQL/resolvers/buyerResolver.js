@@ -20,7 +20,8 @@ const resolvers =
     {
         // Resolver for uploadDocuments(input) : String
         saveBuyer : buyerService.saveBuyer,
-        deleteBuyer : buyerService.deleteBuyer
+        deleteBuyer : buyerService.deleteBuyer,
+        approveBuyer:buyerService.approveBuyer
       
     }
 };

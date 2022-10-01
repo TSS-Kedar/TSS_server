@@ -42,6 +42,22 @@ const setDateUser= (obj,crud,username)=>
 
 }
 
+
+const getDtTmObj= ()=>
+{
+
+ return    {
+
+    dt:sysdate_yyyymmdd(),
+    tm:systime_hh24mmss()
+   
+    }
+       
+    
+}
+
+
+
 // Get sysdate [yyyymmdd]
 let sysdate_yyyymmdd = () => 
 {
@@ -94,5 +110,6 @@ export default {
     sysdate_yyyymmdd,
     systime_hh24mmss,
     checkDate,
-    setDateUser
+    setDateUser,
+    getDtTmObj
 };
