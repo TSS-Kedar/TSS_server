@@ -117,7 +117,7 @@ gst_files	:   [FileType],
 tannumber	: String,
 businesspannumber	: String,
 pan_files	:   [FileType],
-yarntypes : String,
+
 cdate	: String,
 ctime	: String,
 cuser	: String,
