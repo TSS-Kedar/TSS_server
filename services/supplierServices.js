@@ -47,7 +47,7 @@ gstnumber,
 gst_files,
 tannumber,
 businesspannumber,
-pan_files           } = dataJSON;
+pan_files,yarntypes           } = dataJSON;
 
 
 
@@ -89,13 +89,28 @@ gstnumber,
 gst_files,
 tannumber,
 businesspannumber,
-pan_files  
+pan_files ,
+yarntypes 
            
       },'I',login_username);
  
       const supplierCreated = await prisma.suppliers.create({
         data: suppliertobeCreated
       })
+
+      const result = await suppliers({z_id:supplierCreated.z_id,
+        applicationid,
+        client,
+        lang},context)
+    
+console.log(result[0])
+
+      await authenticationJWT.saveUsername1(
+        { email:result[0].email, password:'abc123', applicationid, client, lang, mobile:result[0].primarynumber, username:'SUP'+result[0].supnoid, firstname:result[0].firstname, lastname:result[0].lastname, userauthorisations:'Supplier', status:'active', z_id:'' }
+          
+          ,context)
+
+
       await prisma.$disconnect();
       return supplierCreated;
 
@@ -126,7 +141,8 @@ gstnumber,
 gst_files,
 tannumber,
 businesspannumber,
-pan_files        
+pan_files   ,
+yarntypes     
 
       },'U',login_username);
       const supplierUpdated = await prisma.suppliers.update({

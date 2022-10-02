@@ -959,6 +959,7 @@ model suppliers {
   lang              String? @db.VarChar(100)
   t_id              String? @db.VarChar(100)
   supid             String? @db.VarChar(100)
+  yarntypes         String? @db.VarChar(100)
   firstname         String? @db.VarChar(100)
   lastname          String? @db.VarChar(100)
   country           String? @db.VarChar(100)
@@ -990,6 +991,9 @@ model suppliers {
   dtime             String? @db.VarChar(100)
   duser             String? @db.VarChar(100)
   isdel             String? @db.VarChar(100)
+  supnoid           Int     @default(autoincrement()) @db.UnsignedInt
+
+  @@index([supnoid], map: "supnoid")
 }
 
 model buyers {
