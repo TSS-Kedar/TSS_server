@@ -357,7 +357,7 @@ const signInUsernameJWT = async (userData, context) => {
 
 
 const currentUserUsernameJWT = async (args, context) => {
-console.log('******')
+
   const req = context.request;
   if (req.headers && req.headers.authorization) {
 

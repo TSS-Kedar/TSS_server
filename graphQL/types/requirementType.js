@@ -131,7 +131,8 @@ type oFileType
             applicationid    :   String!,
             client    :   String!,
             lang   :   String!,
-            z_id : String
+            z_id : String,
+            buyid : String
         ):[RequirementType]
 
         requirementsItems:[RequirementItemType]
