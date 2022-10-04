@@ -87,6 +87,12 @@ isdel	: String
             z_id : String
         ):[BuyerType]
 
+        approvedBuyers    (
+            applicationid    :   String!,
+            client    :   String!,
+            lang   :   String!,
+            z_id : String
+        ):[BuyerType]
         
         
   }

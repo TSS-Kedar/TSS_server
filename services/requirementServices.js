@@ -152,7 +152,7 @@ import authenticationJWT from '../services/authenticationJWT'
 
 
   const requirements = async (args, context, info) => {
-    const { applicationid, client, lang, z_id } = args
+    const { applicationid, client, lang, z_id,buyid } = args
   
     const {login_username} =context;
     //authenticationJWT.checkUser(login_username);
@@ -176,7 +176,23 @@ import authenticationJWT from '../services/authenticationJWT'
 
         
         }
-        else{
+        else if(buyid)
+        {
+          const requirements_list = await prisma.requirements.findMany({
+            where: {
+              applicationid,
+              lang,
+              client,
+              z_id,
+              buyid
+            }
+          })
+          await prisma.$disconnect()
+          return requirements_list;
+          
+
+        }
+        else {
 
         
           const requirements_list = await prisma.requirements.findMany({

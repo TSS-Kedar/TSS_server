@@ -15,6 +15,7 @@ const resolvers =
       
         
         buyers:buyerService.buyers,
+        approvedBuyers:buyerService.approvedBuyers
      },
     Mutation:
     {

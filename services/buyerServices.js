@@ -258,7 +258,46 @@ pan_files
   
 
 
-
+    const approvedBuyers = async (args, context, info) => {
+      const { applicationid, client, lang, z_id } = args
+    
+      const {login_username} =context;
+      //authenticationJWT.checkUser(login_username);
+  console.log('adsadadadad')
+  
+        try {
+          const prisma = new PrismaClient()
+  
+   
+        
+           const buyers_list = await prisma.buyers.findMany({
+              where: {
+                applicationid,
+                lang,
+                client,
+          apprstatus:'Approved'	
+              }
+            })
+            await prisma.$disconnect()
+            console.log(buyers_list)
+            return buyers_list;
+        
+  
+          
+     
+  
+      
+        }
+        catch (e) {
+      
+      
+          throw new Error('Error fetching Buyers');
+        }
+  
+  
+  
+  
+      }
 
 
 
@@ -457,6 +496,6 @@ buyertobeApproved
 
   
 
-  export default {deleteBuyer,buyers,saveBuyer,approveBuyer,sendBuyerMobileOTPJWT,verifyBuyerMobileOTPJWT}
+  export default {deleteBuyer,buyers,saveBuyer,approveBuyer,sendBuyerMobileOTPJWT,verifyBuyerMobileOTPJWT,approvedBuyers}
 
 
