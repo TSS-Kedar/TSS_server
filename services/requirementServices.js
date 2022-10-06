@@ -99,7 +99,7 @@ import authenticationJWT from '../services/authenticationJWT'
 
 
 
-const requirementUpdated = await prisma.requirements.update({
+let requirementUpdated = await prisma.requirements.update({
 
   where: {
 
@@ -109,7 +109,7 @@ const requirementUpdated = await prisma.requirements.update({
     reqid:'REQ'+requirementCreated.reqnoid
   }
 })
-
+requirementUpdated.reqid='REQ'+requirementCreated.reqnoid;
 
       await prisma.$disconnect();
       return requirementUpdated;
