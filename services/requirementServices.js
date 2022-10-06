@@ -20,7 +20,7 @@ import authenticationJWT from '../services/authenticationJWT'
      const {login_username} =context;
      
     // authenticationJWT.checkUser(login_username);
-     console.log(dataJSON)
+
     const { applicationid, client, lang, z_id, t_id,
         yarntype          ,
         count              ,
@@ -92,8 +92,27 @@ import authenticationJWT from '../services/authenticationJWT'
       const requirementCreated = await prisma.requirements.create({
         data: requirementtobeCreated
       })
+
+
+
+
+
+
+
+const requirementUpdated = await prisma.requirements.update({
+
+  where: {
+
+    z_id:requirementCreated.z_id
+  },
+  data: {
+    reqid:'REQ'+requirementCreated.reqnoid
+  }
+})
+
+
       await prisma.$disconnect();
-      return requirementCreated;
+      return requirementUpdated;
 
 
 
@@ -153,7 +172,7 @@ import authenticationJWT from '../services/authenticationJWT'
 
   const requirements = async (args, context, info) => {
     const { applicationid, client, lang, z_id,buyid } = args
-  console.log(args)
+ 
     const {login_username} =context;
     //authenticationJWT.checkUser(login_username);
 
@@ -164,7 +183,7 @@ import authenticationJWT from '../services/authenticationJWT'
    
          if(buyid)
         {
-          console.log('*****',buyid)
+   
           const requirements_list = await prisma.requirements.findMany({
             where: {
               applicationid,

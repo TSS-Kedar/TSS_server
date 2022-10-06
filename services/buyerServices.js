@@ -19,7 +19,7 @@ const sendSMS = async ({ message, contactNumber }, next) => {
       message,
       numbers: [contactNumber],
     });
-    console.log(res);
+
   } catch (error) {
     next(error);
   }
@@ -43,9 +43,9 @@ const generateOTP = (otp_length) => {
   async (dataJSON,context) => {
 
      const {login_username} =context;
-     console.log('123')
+
     // authenticationJWT.checkUser(login_username);
-     console.log(dataJSON)
+
     const {   z_id,
 applicationid,
 client,
@@ -263,7 +263,7 @@ pan_files
     
       const {login_username} =context;
       //authenticationJWT.checkUser(login_username);
-  console.log('adsadadadad')
+
   
         try {
           const prisma = new PrismaClient()
@@ -279,7 +279,7 @@ pan_files
               }
             })
             await prisma.$disconnect()
-            console.log(buyers_list)
+
             return buyers_list;
         
   
@@ -338,9 +338,9 @@ pan_files
   async (dataJSON,context) => {
 
      const {login_username} =context;
-     console.log('123')
+
     // authenticationJWT.checkUser(login_username);
-     console.log(dataJSON)
+
     const {   z_id,
 applicationid,
 client,
@@ -372,7 +372,7 @@ lang
     client,
     lang},context)
 
-  console.log(result[0].buyidno)
+
 
 
 
@@ -386,7 +386,7 @@ lang
   buyertobeApproved.appruser=login_username;
   buyertobeApproved.buyid='BUY'+result[0].buyidno
 
-console.log(buyertobeApproved);
+
 	const buyerUpdated = await prisma.buyers.update({
 
         where: {
@@ -415,7 +415,7 @@ buyertobeApproved
   const sendBuyerMobileOTPJWT = async (buyerData, context) => {
 
     
-  console.log(buyerData)
+
   
     if (!buyerData.primarynumber) {
       throw new Error('You must provide mobile number.');
@@ -444,7 +444,7 @@ buyertobeApproved
       const hashmobileotp = await bcrypt.hash(mobileotp, salt);
      
   
-      console.log('mobileotp',mobileotp)
+
 
 
       buyerData.verificationuser=hashmobileotp;

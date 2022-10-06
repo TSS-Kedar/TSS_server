@@ -103,7 +103,23 @@ yarntypes
         client,
         lang},context)
     
-console.log(result[0])
+
+
+
+
+
+const supplierUpdated = await prisma.suppliers.update({
+
+  where: {
+
+    z_id:result[0].z_id
+  },
+  data: {
+    supid:'SUP'+result[0].supnoid
+  }
+})
+
+
 
       await authenticationJWT.saveUsername1(
         { email:result[0].email, password:'abc123', applicationid, client, lang, mobile:result[0].primarynumber, username:'SUP'+result[0].supnoid, firstname:result[0].firstname, lastname:result[0].lastname, userauthorisations:'Supplier', status:'active', z_id:'' }
@@ -112,7 +128,7 @@ console.log(result[0])
 
 
       await prisma.$disconnect();
-      return supplierCreated;
+      return supplierUpdated;
 
 
 
