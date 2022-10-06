@@ -109,7 +109,8 @@ let requirementUpdated = await prisma.requirements.update({
     reqid:'REQ'+requirementCreated.reqnoid
   }
 })
-requirementUpdated.reqid='REQ'+requirementCreated.reqnoid;
+//console.log(requirementUpdated);
+//requirementUpdated.reqid='REQ'+requirementCreated.reqnoid;
 
       await prisma.$disconnect();
       return requirementUpdated;
