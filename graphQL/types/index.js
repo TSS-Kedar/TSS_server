@@ -19,6 +19,7 @@ import supplierType from './supplierType';
 import productType from './productType';
 import buyerType from './buyerType';
 import requirementType from './requirementType';
+import bidType from './bidType';
 // Merge all of the types together
 const types = [
               
@@ -33,7 +34,8 @@ const types = [
                 productType,
                 supplierType,
                 buyerType,
-                requirementType
+                requirementType,
+                bidType
               ];
   
 // NOTE: 2nd param is optional, and defaults to false

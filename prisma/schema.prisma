@@ -1086,4 +1086,38 @@ model requirements {
   dtime          String? @db.VarChar(100)
   duser          String? @db.VarChar(100)
   isdel          String? @db.VarChar(100)
+  reqnoid        Int     @default(autoincrement()) @db.UnsignedInt
+
+  @@index([reqnoid], map: "reqnoid")
+}
+
+model bids {
+  applicationid String? @db.VarChar(100)
+  client        String? @db.VarChar(100)
+  lang          String? @db.VarChar(100)
+  t_id          String? @db.VarChar(100)
+  z_id          String  @id @db.VarChar(100)
+  bidnoid       Int     @default(autoincrement()) @db.UnsignedInt
+  bidid         String? @db.VarChar(100)
+  supid         String? @db.VarChar(100)
+  reqid         String? @db.VarChar(100)
+  amount1       String? @db.VarChar(100)
+  amount2       String? @db.VarChar(100)
+  supremarks    String? @db.VarChar(100)
+  status        String? @db.VarChar(100)
+  statusdate    String? @db.VarChar(100)
+  statustime    String? @db.VarChar(100)
+  statususer    String? @db.VarChar(100)
+  cdate         String? @db.VarChar(100)
+  ctime         String? @db.VarChar(100)
+  cuser         String? @db.VarChar(100)
+  udate         String? @db.VarChar(100)
+  utime         String? @db.VarChar(100)
+  uuser         String? @db.VarChar(100)
+  ddate         String? @db.VarChar(100)
+  dtime         String? @db.VarChar(100)
+  duser         String? @db.VarChar(100)
+  isdel         String? @db.VarChar(100)
+
+  @@index([bidnoid], map: "bidnoid")
 }
