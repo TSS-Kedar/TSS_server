@@ -15,7 +15,7 @@ import datetimeService from '../services/dateTimeServices';
      const {login_username} =context;
      
     // authenticationJWT.checkUser(login_username);
-     console.log(dataJSON)
+
     const {  applicationid ,
         client ,
         lang ,
@@ -40,10 +40,23 @@ import datetimeService from '../services/dateTimeServices';
 
     if (z_id === null || z_id === undefined || z_id === "" ) {
 
-      
+      console.log('here')
       const _idGenerated = await masterdataServices.getUniqueID();
 
-    
+    console.log('data',{
+      z_id: _idGenerated,
+      applicationid ,
+      client ,
+      lang ,
+      t_id ,
+      supid,
+      reqid,
+      amount1,
+      amount2,
+      supremarks,
+      status
+         
+    })
 
       const bidtobeCreated=datetimeService.setDateUser( {
         z_id: _idGenerated,
@@ -59,11 +72,11 @@ import datetimeService from '../services/dateTimeServices';
         status
            
       },'I',login_username);
- 
+      console.log('****bidtobeCreated',bidtobeCreated)
       const bidCreated = await prisma.bids.create({
         data: bidtobeCreated
       })
-
+      console.log('****bidCreated',bidCreated)
       const result = await bids({z_id:bidCreated.z_id,
         applicationid,
         client,
@@ -71,7 +84,7 @@ import datetimeService from '../services/dateTimeServices';
     
 
 
-
+        console.log('****result',result)
 
 
 const bidUpdated = await prisma.bids.update({
@@ -81,7 +94,7 @@ const bidUpdated = await prisma.bids.update({
     z_id:result[0].z_id
   },
   data: {
-    supid:'BID'+result[0].bidnoid
+    bidid:'BID'+result[0].bidnoid
   }
 })
 
@@ -139,9 +152,12 @@ const bidUpdated = await prisma.bids.update({
 
       try {
         const prisma = new PrismaClient()
+     
 
+       if (z_id === null || z_id === undefined || z_id === "") {
+
+        console.log('******1')
         if (supid === null || supid === undefined || supid === "") {
-      
          const bids_list = await prisma.bids.findMany({
             where: {
               applicationid,
@@ -152,26 +168,38 @@ const bidUpdated = await prisma.bids.update({
           })
           await prisma.$disconnect()
           return bids_list;
-      
-
-        
         }
-        else{
-
-        
+        else
+        {
           const bids_list = await prisma.bids.findMany({
             where: {
               applicationid,
               lang,
               client,
-              z_id,
               reqid,
               supid
             }
           })
           await prisma.$disconnect()
           return bids_list;
-          
+
+        }
+
+        
+        }
+        else{
+
+          const bids_list = await prisma.bids.findMany({
+            where: {
+              applicationid,
+              lang,
+              client,
+              z_id
+            }
+          })
+          await prisma.$disconnect()
+          return bids_list;
+      
         }
 
     
