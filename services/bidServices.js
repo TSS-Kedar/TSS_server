@@ -114,7 +114,8 @@ const bidUpdated = await prisma.bids.update({
 
         amount1,
         amount2,
-        supremarks
+        supremarks,
+        status
 
       },'U',login_username);
       const bidUpdated = await prisma.bids.update({
