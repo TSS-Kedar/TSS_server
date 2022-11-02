@@ -144,7 +144,7 @@ const bidUpdated = await prisma.bids.update({
 
 
   const bids = async (args, context, info) => {
-    const { applicationid, client, lang, z_id } = args
+    const { applicationid, client, lang, z_id ,supid,reqid} = args
   
     const {login_username} =context;
     //authenticationJWT.checkUser(login_username);
@@ -156,8 +156,9 @@ const bidUpdated = await prisma.bids.update({
 
        if (z_id === null || z_id === undefined || z_id === "") {
 
-        console.log('******1')
+        console.log('******1',supid,reqid)
         if (supid === null || supid === undefined || supid === "") {
+          console.log('only reqid ',supid)
          const bids_list = await prisma.bids.findMany({
             where: {
               applicationid,
@@ -171,6 +172,7 @@ const bidUpdated = await prisma.bids.update({
         }
         else
         {
+          console.log(' reqid and supid')
           const bids_list = await prisma.bids.findMany({
             where: {
               applicationid,
@@ -188,7 +190,7 @@ const bidUpdated = await prisma.bids.update({
         
         }
         else{
-
+          console.log('total else zid')
           const bids_list = await prisma.bids.findMany({
             where: {
               applicationid,
