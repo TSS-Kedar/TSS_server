@@ -180,7 +180,7 @@ isdel	: String
             buyid:String,
             z_id:String,
             primarynumber:String,
-         )  : BuyerType
+         )  : String
 
          verifyBuyerMobileOTPJWT
          (
@@ -192,7 +192,7 @@ isdel	: String
             primarynumber:String,
             mobileotp:String,
             verificationuser:String
-         )  : BuyerType
+         )  : String
 
 
     }
