@@ -448,7 +448,7 @@ buyertobeApproved
 
     console.log(hashmobileotp)
 
-      buyerData.verificationuser=hashmobileotp;
+      //buyerData.verificationuser=hashmobileotp;
      
   
           await sendSMS(
@@ -460,7 +460,7 @@ buyertobeApproved
   
       await prisma.$disconnect()
 
-      return buyerData;
+      return hashmobileotp;
   
     }
   
