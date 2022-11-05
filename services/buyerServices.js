@@ -449,14 +449,17 @@ buyertobeApproved
     console.log(hashmobileotp)
 
       //buyerData.verificationuser=hashmobileotp;
-     
+     console.log(   {
+      message: `Your OTP is ${mobileotp}`,
+      contactNumber: buyerData.primarynumber,
+    })
   
-          await sendSMS(
-        {
-          message: `Your OTP is ${mobileotp}`,
-          contactNumber: buyerData.primarynumber,
-        }
-      );
+      //     await sendSMS(
+      //   {
+      //     message: `Your OTP is ${mobileotp}`,
+      //     contactNumber: buyerData.primarynumber,
+      //   }
+      // );
   
       await prisma.$disconnect()
 
