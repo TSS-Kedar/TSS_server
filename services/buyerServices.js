@@ -486,8 +486,8 @@ buyertobeApproved
       console.log('123-1')
       if (validMobileotp) {
         console.log('123-2')
-   console.log(buyerData)
-        return buyerData
+ 
+        return "Y"
       }
       else {
         console.log('123-2')
