@@ -14,6 +14,7 @@ import fast2sms from 'fast-two-sms';
 
 const sendSMS = async ({ message, contactNumber }, next) => {
   try {
+    console.log(message,contactNumber)
     const res = await fast2sms.sendMessage({
       authorization: process.env.FAST2SMS,
       message,
@@ -445,7 +446,7 @@ buyertobeApproved
      
   
 
-
+    console.log(hashmobileotp)
 
       buyerData.verificationuser=hashmobileotp;
      
@@ -473,18 +474,20 @@ buyertobeApproved
 
     const { primarynumber,mobileotp,verificationuser } = buyerData;
   
-  
-    if (!buyerData.verificationuser || !buyerData.mobileotp) {
+  console.log('buyerData',buyerData)
+    if (!buyerData.primarynumber || !buyerData.mobileotp) {
       throw new Error('You must provide an mobile number and mobileotp.');
     }
   
       let validMobileotp = await bcrypt.compare(mobileotp, buyerData.verificationuser);
+      console.log('123-1')
       if (validMobileotp) {
-  
-      
+        console.log('123-2')
+   console.log(buyerData)
         return buyerData
       }
       else {
+        console.log('123-2')
         throw new Error('Invalid Mbile number & OTP');
       }
   

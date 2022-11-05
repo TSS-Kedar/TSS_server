@@ -180,7 +180,7 @@ let requirementUpdated = await prisma.requirements.update({
 
       try {
         const prisma = new PrismaClient()
-
+console.log('buyid',buyid)
    
          if(buyid)
         {
