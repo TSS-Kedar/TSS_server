@@ -42,6 +42,13 @@ import authenticationJWT from '../services/authenticationJWT'
         targetprice,
         restreportreq,
         targetmills,
+        remarks,
+        remarks1,
+        remarks2,
+        uom,
+        paymentterms,
+        deliverylocation,
+        bcicertificate,
         reqid,
         buyid         } = dataJSON;
 
@@ -84,6 +91,13 @@ import authenticationJWT from '../services/authenticationJWT'
         targetprice,
         restreportreq,
         targetmills,
+        remarks,
+        remarks1,
+        remarks2,
+        uom,
+        paymentterms,
+        deliverylocation,
+        bcicertificate,
         reqid,
         buyid   
            
@@ -141,6 +155,13 @@ let requirementUpdated = await prisma.requirements.update({
         targetprice,
         restreportreq,
         targetmills,
+        remarks,
+        remarks1,
+        remarks2,
+        uom,
+        paymentterms,
+        deliverylocation,
+        bcicertificate,
         reqid,
         buyid          
 

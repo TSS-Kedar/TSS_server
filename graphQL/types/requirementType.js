@@ -65,10 +65,13 @@ type oFileType
             targetprice:   String,
             restreportreq:   String,
             targetmills:   String,
-
-
-
-
+            remarks:   String,
+            remarks1:   String,
+            remarks2:   String,
+            uom:   String,
+            paymentterms:   String,
+            deliverylocation:   String,
+            bcicertificate:   String,
             cdate       :   String,
             ctime       :   String,
             cuser       :   String,
@@ -112,7 +115,13 @@ type oFileType
             targetprice:   String,
             restreportreq:   String,
             targetmills:   String,
-
+            remarks:   String,
+            remarks1:   String,
+            remarks2:   String,
+            uom:   String,
+            paymentterms:   String,
+            deliverylocation:   String,
+            bcicertificate:   String,
             cdate       :   String,
             ctime       :   String,
             cuser       :   String,
@@ -170,7 +179,13 @@ type oFileType
             targetprice:   String,
             restreportreq:   String,
             targetmills:   String,
-
+            remarks:   String,
+            remarks1:   String,
+            remarks2:   String,
+            uom:   String,
+            paymentterms:   String,
+            deliverylocation:   String,
+            bcicertificate:   String,
             username   :   String,
            
          )  : RequirementType
