@@ -26,6 +26,10 @@ import datetimeService from '../services/dateTimeServices';
         amount1,
         amount2,
         supremarks,
+        uombid,
+        paymenttermsbid,
+        testcertificate_files,
+        bcicertificate_files,
         status} = dataJSON;
 
 
@@ -54,6 +58,10 @@ import datetimeService from '../services/dateTimeServices';
       amount1,
       amount2,
       supremarks,
+      uombid,
+      paymenttermsbid,
+      testcertificate_files,
+      bcicertificate_files,
       status
          
     })
@@ -69,6 +77,11 @@ import datetimeService from '../services/dateTimeServices';
         amount1,
         amount2,
         supremarks,
+        uombid,
+        paymenttermsbid,
+        testcertificate_files,
+        bcicertificate_files,
+
         status
            
       },'I',login_username);
@@ -115,7 +128,12 @@ const bidUpdated = await prisma.bids.update({
         amount1,
         amount2,
         supremarks,
-        status
+        status,
+        uombid,
+        paymenttermsbid,
+        testcertificate_files,
+        bcicertificate_files
+
 
       },'U',login_username);
       const bidUpdated = await prisma.bids.update({

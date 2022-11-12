@@ -1,4 +1,30 @@
 const typeDefs = `
+
+
+# File Type
+input FileType
+{
+    z_id: String,
+    fileid: String,
+    filepath: String,
+    filename: String,
+    filetype: String,
+    filesize: String
+}
+
+
+# File Type
+type oFileType
+{
+    z_id: String,
+    fileid: String,
+    filepath: String,
+    filename: String,
+    filetype: String,
+    filesize: String
+}
+
+
     # Bid Type Type
     type BidType
     {       
@@ -14,6 +40,10 @@ reqid	: String,
 amount1	: String,
 amount2	: String,
 supremarks	: String,
+uombid : String,
+paymenttermsbid : String,
+testcertificate_files	:   [oFileType],
+bcicertificate_files	:   [oFileType],
 status	: String,
 statusdate	: String,
 statustime	: String,
@@ -65,6 +95,10 @@ reqid	: String,
 amount1	: String,
 amount2	: String,
 supremarks	: String,
+uombid : String,
+paymenttermsbid : String,
+testcertificate_files	:   [FileType],
+bcicertificate_files	:   [FileType],
 status :String,
 statusdate	: String,
 statusdate	: String,
