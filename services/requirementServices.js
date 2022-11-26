@@ -48,7 +48,11 @@ import authenticationJWT from '../services/authenticationJWT'
         deliverylocation,
         bcicertificate,
         reqid,
-        buyid         } = dataJSON;
+        buyid ,
+        status,
+        statusdate,
+        statustime,
+        statususer        } = dataJSON;
 
 
 
@@ -95,7 +99,11 @@ import authenticationJWT from '../services/authenticationJWT'
         deliverylocation,
         bcicertificate,
         reqid,
-        buyid   
+        buyid  ,
+        status,
+        statusdate,
+        statustime,
+        statususer    
            
       },'I',login_username);
  
@@ -157,7 +165,11 @@ let requirementUpdated = await prisma.requirements.update({
         deliverylocation,
         bcicertificate,
         reqid,
-        buyid          
+        buyid    ,
+        status,
+        statusdate,
+        statustime,
+        statususer         
 
       },'U',login_username);
       const requirementUpdated = await prisma.requirements.update({

@@ -70,6 +70,10 @@ type oFileType
             paymentterms:   String,
             deliverylocation:   String,
             bcicertificate:   String,
+            status:   String,
+            statusdate:   String,
+            statustime:   String,
+            statususer:   String,
             cdate       :   String,
             ctime       :   String,
             cuser       :   String,
@@ -118,6 +122,10 @@ type oFileType
             paymentterms:   String,
             deliverylocation:   String,
             bcicertificate:   String,
+            status:   String,
+            statusdate:   String,
+            statustime:   String,
+            statususer:   String,
             cdate       :   String,
             ctime       :   String,
             cuser       :   String,
@@ -181,6 +189,10 @@ type oFileType
             deliverylocation:   String,
             bcicertificate:   String,
             username   :   String,
+            status:   String,
+            statusdate:   String,
+            statustime:   String,
+            statususer:   String
            
          )  : RequirementType
 
