@@ -19,7 +19,7 @@ import multer from 'multer';
 // Importing types
 import typeDefs from './graphQL/types';
 import fileServices from './services/fileServices'
-import subscriptionServices from './services/subscriptionServices'
+import {deleteSubscription,saveSubscription,subscriptions,sendNotification} from './services/subscriptionServices'
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import bodyParser  from 'body-parser';
@@ -357,7 +357,7 @@ server.post('/notifications/subscribe', async (req, res) => {
   try{
 
 
-    let savedSubscription = await subscriptionServices.saveSubscription({z_id:'',applicationid:'15001500', client:'45004500', lang:'EN', subobj:subscription},{login_username:''})
+    let savedSubscription = await saveSubscription({z_id:'',applicationid:'15001500', client:'45004500', lang:'EN', subobj:subscription},{login_username:''})
     let options={
       
       body:'Successfully Subscribed to RecoKart !',
@@ -371,7 +371,7 @@ server.post('/notifications/subscribe', async (req, res) => {
         options:options
       }
  
-      await subscriptionServices.sendNotification(savedSubscription.subobj,notification)
+      await sendNotification(savedSubscription.subobj,notification)
 
       res.status(200).json({'success': true})
 

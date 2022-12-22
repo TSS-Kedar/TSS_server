@@ -210,4 +210,4 @@ import authenticationJWT from '../services/authenticationJWT'
 
 
 
-  export default {deleteSubscription,saveSubscription,subscriptions,sendNotification}
+  export  {deleteSubscription,saveSubscription,subscriptions,sendNotification}

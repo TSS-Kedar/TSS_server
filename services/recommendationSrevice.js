@@ -8,7 +8,7 @@ import { PrismaClient } from '@prisma/client';
 
 import datetimeService from '../services/dateTimeServices'; 
 import authenticationJWT from '../services/authenticationJWT'
-import subscriptionservices from '../services/subscriptionservices'; 
+import {deleteSubscription,saveSubscription,subscriptions,sendNotification} from '../services/subscriptionServices'; 
 
 
 
@@ -31,7 +31,7 @@ const  sendRecommendationNotification =async ({ recommendation} ,context )=>
  
 
   
- let subscriptions= await subscriptionservices.subscriptions({applicationid ,
+ let subscriptions= await subscriptions({applicationid ,
   client,
   lang},context)
   
@@ -75,7 +75,7 @@ const  sendRecommendationNotification =async ({ recommendation} ,context )=>
 
 
 
-    subscriptionservices.sendNotification(element.subobj,notification)
+    sendNotification(element.subobj,notification)
   
   });
   
