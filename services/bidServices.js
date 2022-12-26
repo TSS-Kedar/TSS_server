@@ -275,4 +275,89 @@ const bidUpdated = await prisma.bids.update({
 
   }
 
-  export default {deleteBid,bids,saveBid}
+
+
+
+
+
+
+
+const acceptBid =
+  async (
+    dataJSON,context
+  ) => {
+
+    const {login_username} =context;
+   // authenticationJWT.checkUser(login_username);
+
+    const { applicationid, client, lang, username, z_id } =dataJSON;
+
+
+    try {
+      const prisma = new PrismaClient()
+     
+
+      const bidtobeUpdated1=datetimeService.setDateUser(  {
+
+     
+        status:'accepted',
+
+
+      },'U',login_username);
+ 
+ 
+      const bidtobeUpdated=datetimeService.setDateUser(  bidtobeUpdated1,'S',login_username);
+      
+      const bidUpdated = await prisma.bids.update({
+
+        where: {
+
+          z_id
+        },
+        data: bidtobeUpdated
+      })
+
+
+
+      const requirementtobeUpdated1=datetimeService.setDateUser(  {
+
+     
+        status:'accepted',
+
+
+      },'U',login_username);
+ 
+ 
+      const requirementtobeUpdated=datetimeService.setDateUser(  requirementtobeUpdated1,'S',login_username);
+      
+      const requirementUpdated = await prisma.bids.update({
+
+        where: {
+
+          z_id
+        },
+        data: requirementtobeUpdated
+      })
+
+
+
+
+
+
+
+
+      await prisma.$disconnect()
+      return bidUpdated;
+    } catch (err) {
+
+      throw new Error('Unable to update Bid');
+    }
+
+  }
+
+
+
+
+
+
+  export default {deleteBid,bids,saveBid,acceptBid}

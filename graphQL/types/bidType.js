@@ -129,8 +129,14 @@ isdel	: String
             z_id:String
          )  : BidType
 
-  
-
+         acceptBid
+         (
+            applicationid : String,
+            client: String ,
+            lang: String ,
+            supid:String,
+            z_id:String
+         )  : BidType
 
     }
 

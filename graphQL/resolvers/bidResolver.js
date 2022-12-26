@@ -20,7 +20,8 @@ const resolvers =
     {
         // Resolver for uploadDocuments(input) : String
         saveBid : bidService.saveBid,
-        deleteBid : bidService.deleteBid
+        deleteBid : bidService.deleteBid,
+        acceptBid:bidService.acceptBid
       
     }
 };

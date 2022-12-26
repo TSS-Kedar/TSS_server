@@ -27,6 +27,14 @@ const setDateUser= (obj,crud,username)=>
         newObj.uuser=username;
         return  newObj;
     }
+    else if(crud=="S" || crud=="s")
+    {
+
+        newObj.statusdate=sysdate_yyyymmdd();
+        newObj.statustime=systime_hh24mmss();
+        newObj.statususer=username;
+        return  newObj;
+    }
     else if(crud=="D" || crud=="d")
     {
 
