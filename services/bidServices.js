@@ -317,7 +317,7 @@ const acceptBid =
         data: bidtobeUpdated
       })
 
-
+console.log(bidUpdated.reqid)
 
       const requirements_list = await prisma.requirements.findMany({
         where: {
@@ -327,7 +327,7 @@ const acceptBid =
           reqid:bidUpdated.reqid
         }
       })
-
+      console.log(requirements_list)
 
       const requirementtobeUpdated1=datetimeService.setDateUser(  {
 
@@ -340,7 +340,7 @@ const acceptBid =
  
       const requirementtobeUpdated=datetimeService.setDateUser(  requirementtobeUpdated1,'S',login_username);
       
-      const requirementUpdated = await prisma.bids.update({
+      const requirementUpdated = await prisma.requirements.update({
 
         where: {
 
