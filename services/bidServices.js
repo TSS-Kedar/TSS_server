@@ -319,6 +319,16 @@ const acceptBid =
 
 
 
+      const requirements_list = await prisma.requirements.findMany({
+        where: {
+          applicationid,
+          lang,
+          client,
+          reqid:bidUpdated.reqid
+        }
+      })
+
+
       const requirementtobeUpdated1=datetimeService.setDateUser(  {
 
      
@@ -334,7 +344,7 @@ const acceptBid =
 
         where: {
 
-          z_id
+          z_id:requirements_list[0].z_id
         },
         data: requirementtobeUpdated
       })
@@ -350,7 +360,7 @@ const acceptBid =
       return bidUpdated;
     } catch (err) {
 
-      throw new Error('Unable to update Bid');
+      throw new Error('Unable to accept Bid');
     }
 
   }
