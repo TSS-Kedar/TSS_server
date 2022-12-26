@@ -134,7 +134,6 @@ isdel	: String
             applicationid : String,
             client: String ,
             lang: String ,
-            supid:String,
             z_id:String
          )  : BidType
 
