@@ -10,7 +10,50 @@ import datetimeService from '../services/dateTimeServices';
 import authenticationJWT from '../services/authenticationJWT'
 const secretKey = 'aaabbbccc';
 import fast2sms from 'fast-two-sms';
+import {sendEMail} from './mail'
 
+
+const getBuyerRegEmail=(buyer)=>
+{
+return  {
+	from: "omias8055@gmail.com",
+	to: buyer.email,
+	subject: "Buyer registration request",
+	html: `<!DOCTYPE html>
+	<html lang="en">
+	
+	<head>
+			<meta charset="UTF-8" />
+			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<title>Registration Request Record</title>
+			<link href="index.css" rel="stylesheet" />
+	
+	</head>
+	
+	<body>
+	<style>
+	@import url("https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@300;400;600&family=Inter:wght@300;400;500;700&family=Merriweather:wght@400;700&display=swap");
+.card {
+    font-family: "Merriweather", serif;
+   
+}
+</style>
+			<div class="card">
+					<h2>Registration Request</h2>
+					<h class="web">Dear ${buyer.firstname},</h><br>
+					<a><b>Omnath Dubey</b> We have received your registration request..</a><br />
+					<a>Company Name- <b>${buyer.companyname}</b> </a><br />
+					<a>Mobile No-<b>${buyer.primarynumber}</b></a>
+					<p>Thanks for showing interest. We will get back to you shortly...</p>
+					<h4 class="web">Wish Regards</h4>
+					<h4 class="web">Team TSS</h5>
+			</div>
+	</body>
+	
+	</html>`,
+  };
+}
 
 const sendSMS = async ({ message, contactNumber }, next) => {
   try {
@@ -25,6 +68,10 @@ const sendSMS = async ({ message, contactNumber }, next) => {
     next(error);
   }
 };
+
+
+
+
 
 
 const generateOTP = (otp_length) => {
@@ -126,6 +173,7 @@ pan_files
      
 
       await prisma.$disconnect();
+      await sendEMail(getBuyerRegEmail(buyerCreated))
       return buyerCreated;
 
 
