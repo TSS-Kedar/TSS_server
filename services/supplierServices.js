@@ -9,7 +9,61 @@ import { PrismaClient } from '@prisma/client';
 import datetimeService from '../services/dateTimeServices'; 
 import authenticationJWT from '../services/authenticationJWT'
 
+import {sendEMail} from './mail'
+const getSupplierRegistrationEmail=(supplier)=>
+{
+return   {
+    from: "omias8055@gmail.com",
+    to: "omias8055@gmail.com,rhishikesh.parkhi@gmail.com,anant.thube73@gmail.com",
+    subject: "Supplier Registration",
+    html: `<!DOCTYPE html>
+	<html lang="en">
+	
+	<head>
+			<meta charset="UTF-8" />
+			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<style>
+					.card {
+							text-align: center;
+							width: 100%;
+							background-color: rgb(223, 243, 223);
+					}
+					
+					.button {
+							background-color: green;
+							color: aliceblue;
+							padding: 10px;
+							border-radius: 10px;
+					}
+			</style>
+	</head>
+	
+	<body>
+			<div class="card">
+			<br>
+			<br>
+					<h3>Supplier Registration</h3>
+					<h> Hello Dear,<b>${supplier.firstname}</b></h><br />
+					<a>Welcome On Board!</a><br />
+					<a>Username: ${supplier.username} <br />
+					Password: ${supplier.password}</a
+				><br />
+				<h>Here is a video tutorial about how to use our services. </h><br />
+				<a
+					>For support, feel free to mail us at
+					support@textilesourcingsolutions.in</a
+				>
+				<a></a>
+				<br>
+				<br>
+			</div>
+	</body>
+	
+	</html>`,
+};
 
+}
 
 
 
@@ -125,6 +179,7 @@ const supplierUpdated = await prisma.suppliers.update({
         { email:result[0].email, password:'abc123', applicationid, client, lang, mobile:result[0].primarynumber, username:'SUP'+result[0].supnoid, firstname:result[0].firstname, lastname:result[0].lastname, userauthorisations:'Supplier', status:'active', z_id:'' }
           
           ,context)
+          await sendEMail(getSupplierRegistrationEmail({ email:result[0].email, password:'abc123', applicationid, client, lang, mobile:result[0].primarynumber, username:'SUP'+result[0].supnoid, firstname:result[0].firstname, lastname:result[0].lastname, userauthorisations:'Supplier', status:'active', z_id:'' }))
 
 
       await prisma.$disconnect();

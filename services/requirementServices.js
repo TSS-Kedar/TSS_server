@@ -10,11 +10,11 @@ import datetimeService from '../services/dateTimeServices';
 import authenticationJWT from '../services/authenticationJWT'
 import {sendEMail} from './mail'
 
-const getRequirementEmail=(requirement)=>
+const getRequirementEmail1=(requirement)=>
 {
 return  {
 	from: "omias8055@gmail.com",
-	to: "rhishikesh.parkhi@gmail.com",
+	to: "rhishikesh.parkhi@gmail.com,anant.thube73@gmail.com",
 	subject: "New requirement created",
 	html:   `<!DOCTYPE html>
   <html lang="en">
@@ -81,7 +81,102 @@ return  {
   };
 }
 
-
+const getRequirementEmail=(requirement)=>
+{
+return  {
+  from: "omias8055@gmail.com",
+  to: "omias8055@gmail.com,rhishikesh.parkhi@gmail.com,anant.thube73@gmail.com",
+  subject: "New requirement intimation",
+  html: `<!DOCTYPE html>
+  <html lang="en">
+  
+  <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <style>
+						.card {
+								text-align: center;
+								width: 100%;
+								background-color: #1b90bb;
+								color: #ffffff;
+						}
+						
+						.button {
+								background-color: green;
+								color: aliceblue;
+								padding: 10px;
+								border-radius: 10px;
+								border-color: #ffffff;
+						}
+						
+						#simple_table {
+								font-family: arial, sans-serif;
+								border-collapse: collapse;
+								width: 100%;
+								background-color: #ffffff;
+								color: black;
+								text-align: center;
+						}
+						
+						#simple_table td,
+						#simple_table th {
+								text-align: center;
+								padding: 8px;
+								border: 1px solid #808080;
+						}
+						
+						#simple_table tr:nth-child(even) {
+								background-color: #dddddd;
+						}
+						
+						#simple_table tr:hover {
+								background-color: #ffff99;
+						}
+				</style>  </head>
+  
+  <body>
+      <div class="card">
+      <br>
+          <h3>New requirement intimation</h3>
+          <h> Hello Dear,<b>{NAME}</b></h>
+          <p>Welcome On Board!</p>
+          <p>Here is a requirement that might be of your interest, kindly go through
+          the details</p
+        >
+        <h
+          >
+          Buyer &nbsp; (............)
+          </div>
+          <table id="simple_table">
+          <tr > <td> Yarntype </td><td>  ${requirement.yarntype} </td> </tr>
+          <tr > <td>Delivery Period </td><td>   ${requirement.deliverysch}</td> </tr>
+          <tr > <td>Required Qty </td><td>   ${requirement.reqqty}</td> </tr>
+          <tr > <td>Unit </td><td>   ${requirement.uom}</td> </tr>
+          <tr > <td>CSP </td><td>  ${requirement.yarncsp}</td> </tr>
+          <tr > <td>Target Price </td><td>   ${requirement.targetprice}</td> </tr>
+          <tr > <td>Payment Terms </td><td>   ${requirement.paymentterms}</td> </tr>
+          <tr > <td>Test Report </td><td>   ${requirement.restreportreq}</td> </tr>
+          <tr > <td>BCI Certificate </td><td>   ${requirement.bcicertificate}</td> </tr>
+          <tr > <td>Delivery Location </td><td>   ${requirement.deliverylocation}</td> </tr>
+          <tr > <td>Target Mills </td><td>   ${requirement.targetmills}</td> </tr>
+          <tr > <td>Remarks </td><td>   ${requirement.remarks}</td> </tr>
+          </table>
+      
+          
+          
+          </h
+        ><br />
+        <button class="button">BID NOW</button>
+  
+        <a></a>
+        <br>
+      </div>
+  </body>
+  
+  </html>`,
+};
+}
 
 
 

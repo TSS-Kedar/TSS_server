@@ -16,44 +16,155 @@ import {sendEMail} from './mail'
 const getBuyerRegEmail=(buyer)=>
 {
 return  {
-	from: "omias8055@gmail.com",
-	to: buyer.email,
-	subject: "Buyer registration request",
-	html: `<!DOCTYPE html>
-	<html lang="en">
+  from: "omias8055@gmail.com",
+  to: "omias8055@gmail.com,anant.thube73@gmail.com,rhishikesh.parkhi@gmail.com",
+  subject: "New Buyer Registration Request Received",
+  html: `<!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <style>
+        .card {
+          text-align: center;
+          width: 100%;
+          background-color: rgb(223, 243, 223);
+        }
+  
+        .button {
+          background-color: green;
+          color: aliceblue;
+          padding: 10px;
+          border-radius: 10px;
+        }
+      </style>
+    </head>
+  
+    <body>
+      <div class="card">
+        <h3>New Buyer Registration Request Received</h3>
+        <h> Hello Dear,<b>${buyer.firstname}</b></h
+        ><br />
+        <a>Greetings of the day!</a><br />
+        <h
+          >This is to inform you that we have received your registration details
+          and our team is verifying it. </h
+        ><br />
+        <a>Verification Time: 24hrs</a><br /><br />
+        <a>
+          We are excited to get you on board as soon as possible and simplify
+          textile sourcing for you.<br />For support, feel free to mail us at
+          support@textilesourcingsolutions.in</a
+        ><br /><br />
+      </div>
+    </body>
+  </html>
+  `,
+};
+
+
+
+
+// {
+// 	from: "omias8055@gmail.com",
+// 	to: buyer.email,
+// 	subject: "Buyer registration request",
+// 	html: `<!DOCTYPE html>
+// 	<html lang="en">
 	
-	<head>
-			<meta charset="UTF-8" />
-			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-			<title>Registration Request Record</title>
-			<link href="index.css" rel="stylesheet" />
+// 	<head>
+// 			<meta charset="UTF-8" />
+// 			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+// 			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+// 			<title>Registration Request Record</title>
+// 			<link href="index.css" rel="stylesheet" />
 	
-	</head>
+// 	</head>
 	
-	<body>
-	<style>
-	@import url("https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@300;400;600&family=Inter:wght@300;400;500;700&family=Merriweather:wght@400;700&display=swap");
-.card {
-    font-family: "Merriweather", serif;
+// 	<body>
+// 	<style>
+// 	@import url("https://fonts.googleapis.com/css2?family=Chivo+Mono:wght@300;400;600&family=Inter:wght@300;400;500;700&family=Merriweather:wght@400;700&display=swap");
+// .card {
+//     font-family: "Merriweather", serif;
    
-}
-</style>
-			<div class="card">
-					<h2>Registration Request</h2>
-					<h class="web">Dear ${buyer.firstname},</h><br>
-					<a><b>Omnath Dubey</b> We have received your registration request..</a><br />
-					<a>Company Name- <b>${buyer.companyname}</b> </a><br />
-					<a>Mobile No-<b>${buyer.primarynumber}</b></a>
-					<p>Thanks for showing interest. We will get back to you shortly...</p>
-					<h4 class="web">Wish Regards</h4>
-					<h4 class="web">Team TSS</h5>
-			</div>
-	</body>
+// }
+// </style>
+// 			<div class="card">
+// 					<h2>Registration Request</h2>
+// 					<h class="web">Dear ${buyer.firstname},</h><br>
+// 					<a><b>Omnath Dubey</b> We have received your registration request..</a><br />
+// 					<a>Company Name- <b>${buyer.companyname}</b> </a><br />
+// 					<a>Mobile No-<b>${buyer.primarynumber}</b></a>
+// 					<p>Thanks for showing interest. We will get back to you shortly...</p>
+// 					<h4 class="web">Wish Regards</h4>
+// 					<h4 class="web">Team TSS</h5>
+// 			</div>
+// 	</body>
 	
-	</html>`,
-  };
+// 	</html>`,
+//   };
 }
+
+
+
+
+const getBuyerApprovalEmail=(buyer)=>
+{
+return   {
+  from: "omias8055@gmail.com",
+  to: "omias8055@gmail.com,rhishikesh.parkhi@gmail.com,anant.thube73@gmail.com",
+  subject: "Registration Approval",
+  html: `<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+        .card {
+            text-align: center;
+            width: 100%;
+            background-color: rgb(223, 243, 223);
+        }
+        
+        .button {
+            background-color: green;
+            color: aliceblue;
+            padding: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+    <br><br>
+        <h3>Registration Approval</h3>
+        <h> Hello Dear,<b>${buyer.firstname}</b></h><br />
+        <a>Welcome On Board!</a><br />
+        <a>Username: ${buyer.username} <br />
+        Password: ${buyer.password}</a
+      ><br />
+      <h>Here is a video tutorial about how to use our services. </h><br />
+      <a
+        >For support, feel free to mail us at
+        support@textilesourcingsolutions.in</a
+      >
+      <a></a>
+      <br>
+      <br>
+    </div>
+</body>
+
+</html>`,
+};
+
+}
+
+
+
 
 const sendSMS = async ({ message, contactNumber }, next) => {
   try {
@@ -453,6 +564,8 @@ buyertobeApproved
     ,context)
 
       await prisma.$disconnect();
+      await sendEMail(getBuyerApprovalEmail({ email:result[0].email, password:'abc123', applicationid, client, lang, mobile:result[0].primarynumber, username:'BUY'+result[0].buyidno, firstname:result[0].firstname, lastname:result[0].lastname, userauthorisations:'Buyer', status:'active', z_id:'' }))
+ 
       return buyerUpdated;
 
   }
@@ -508,7 +621,7 @@ buyertobeApproved
       //     contactNumber: buyerData.primarynumber,
       //   }
       // );
-  
+      await sendEMail(getOTPEmail(buyerData,mobileotp))
       await prisma.$disconnect()
 
       return hashmobileotp;
@@ -518,7 +631,49 @@ buyertobeApproved
   }
 
 
+const getOTPEmail =(buyer,mobileotp) =>{
 
+  return  {
+    from: "omias8055@gmail.com",
+    to: "omias8055@gmail.com,rhishikesh.parkhi@gmail.com,anant.thube73@gmail.com",
+    subject: "Your OTP",
+    html: `<!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+          .card {
+            text-align: center;
+            width: 100%;
+            background-color: rgb(223, 243, 223);
+          }
+    
+          .button {
+            background-color: green;
+            color: aliceblue;
+            padding: 10px;
+            border-radius: 10px;
+          }
+        </style>
+      </head>
+    
+      <body>
+        <div class="card">
+          <h3>OTP for registration</h3>
+          <h> Hello Dear,</h
+          ><br />
+          <a>Greetings of the day!</a><br />
+          Your OTP for registration is <b>${mobileotp}</b>
+        </div>
+      </body>
+    </html>
+    `,
+  };
+  
+
+}
 
 
   const verifyBuyerMobileOTPJWT = async (buyerData, context) => {
