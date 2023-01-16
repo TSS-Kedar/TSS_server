@@ -11,13 +11,13 @@ import authenticationJWT from '../services/authenticationJWT'
 const secretKey = 'aaabbbccc';
 import fast2sms from 'fast-two-sms';
 import {sendEMail} from './mail'
-
+import prisma from './db'
 
 const getBuyerRegEmail=(buyer)=>
 {
 return  {
-  from: "omias8055@gmail.com",
-  to: "omias8055@gmail.com,anant.thube73@gmail.com,rhishikesh.parkhi@gmail.com",
+  from: process.env.ENVIRONMENT=='DEV'? process.env.DEV_EMAILS_FROM: process.env.PROD_EMAILS_FROM,
+  to: process.env.ENVIRONMENT=='DEV'? process.env.DEV_EMAILS_TO: process.env.PROD_EMAILS_TO,
   subject: "New Buyer Registration Request Received",
   html: `<!DOCTYPE html>
   <html lang="en">
@@ -112,8 +112,8 @@ return  {
 const getBuyerApprovalEmail=(buyer)=>
 {
 return   {
-  from: "omias8055@gmail.com",
-  to: "omias8055@gmail.com,rhishikesh.parkhi@gmail.com,anant.thube73@gmail.com",
+  from: process.env.ENVIRONMENT=='DEV'? process.env.DEV_EMAILS_FROM: process.env.PROD_EMAILS_FROM,
+  to: process.env.ENVIRONMENT=='DEV'? process.env.DEV_EMAILS_TO: process.env.PROD_EMAILS_TO,
   subject: "Registration Approval",
   html: `<!DOCTYPE html>
 <html lang="en">
@@ -237,7 +237,7 @@ pan_files           } = dataJSON;
 
     if (!firstname) { throw new Error('You must provide firstname.'); }
   
-    const prisma = new PrismaClient()
+   // const prisma = new PrismaClient()
 
 
     
@@ -634,8 +634,8 @@ buyertobeApproved
 const getOTPEmail =(buyer,mobileotp) =>{
 
   return  {
-    from: "omias8055@gmail.com",
-    to: "omias8055@gmail.com,rhishikesh.parkhi@gmail.com,anant.thube73@gmail.com",
+    from: process.env.ENVIRONMENT=='DEV'? process.env.DEV_EMAILS_FROM: process.env.PROD_EMAILS_FROM,
+    to: process.env.ENVIRONMENT=='DEV'? process.env.DEV_EMAILS_TO: process.env.PROD_EMAILS_TO,
     subject: "Your OTP",
     html: `<!DOCTYPE html>
     <html lang="en">

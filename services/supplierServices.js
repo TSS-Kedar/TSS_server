@@ -13,8 +13,8 @@ import {sendEMail} from './mail'
 const getSupplierRegistrationEmail=(supplier)=>
 {
 return   {
-    from: "omias8055@gmail.com",
-    to: "omias8055@gmail.com,rhishikesh.parkhi@gmail.com,anant.thube73@gmail.com",
+    from: process.env.ENVIRONMENT=='DEV'? process.env.DEV_EMAILS_FROM: process.env.PROD_EMAILS_FROM,
+    to: process.env.ENVIRONMENT=='DEV'? process.env.DEV_EMAILS_TO: process.env.PROD_EMAILS_TO,
     subject: "Supplier Registration",
     html: `<!DOCTYPE html>
 	<html lang="en">

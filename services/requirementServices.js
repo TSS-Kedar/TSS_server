@@ -13,8 +13,8 @@ import {sendEMail} from './mail'
 const getRequirementEmail1=(requirement)=>
 {
 return  {
-	from: "omias8055@gmail.com",
-	to: "rhishikesh.parkhi@gmail.com,anant.thube73@gmail.com",
+	from: process.env.ENVIRONMENT=='DEV'? process.env.DEV_EMAILS_FROM: process.env.PROD_EMAILS_FROM,
+	to: "rhishikesh.parkhi@gmail.com,anant.thube73@gmail.com,patnipratik2000@gmail.com",
 	subject: "New requirement created",
 	html:   `<!DOCTYPE html>
   <html lang="en">
@@ -84,8 +84,8 @@ return  {
 const getRequirementEmail=(requirement)=>
 {
 return  {
-  from: "omias8055@gmail.com",
-  to: "omias8055@gmail.com,rhishikesh.parkhi@gmail.com,anant.thube73@gmail.com",
+  from: process.env.ENVIRONMENT=='DEV'? process.env.DEV_EMAILS_FROM: process.env.PROD_EMAILS_FROM,
+  to: process.env.ENVIRONMENT=='DEV'? process.env.DEV_EMAILS_TO: process.env.PROD_EMAILS_TO,
   subject: "New requirement intimation",
   html: `<!DOCTYPE html>
   <html lang="en">
