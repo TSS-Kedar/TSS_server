@@ -4,12 +4,12 @@ dotenv.config();
 
 
 import masterdataServices from '../services/masterdataServices';
-import { PrismaClient } from '@prisma/client';
+//import { PrismaClient } from '@prisma/client';
 
 import datetimeService from '../services/dateTimeServices'; 
 import authenticationJWT from '../services/authenticationJWT'
 
-
+import prisma from './db'
 
 
 
@@ -41,7 +41,7 @@ import authenticationJWT from '../services/authenticationJWT'
 
     if (!yarntype) { throw new Error('You must provide and yarntype.'); }
   
-    const prisma = new PrismaClient()
+  //  const prisma = new PrismaClient()
 
 
     
@@ -76,7 +76,7 @@ import authenticationJWT from '../services/authenticationJWT'
       const productCreated = await prisma.products.create({
         data: producttobeCreated
       })
-      await prisma.$disconnect();
+    //  await prisma.$disconnect();
       return productCreated;
 
 
@@ -110,7 +110,7 @@ import authenticationJWT from '../services/authenticationJWT'
         data: producttobeUpdated
       })
 
-      await prisma.$disconnect();
+    // await prisma.$disconnect();
       return productUpdated;
 
 
@@ -135,7 +135,7 @@ import authenticationJWT from '../services/authenticationJWT'
 
 
       try {
-        const prisma = new PrismaClient()
+      //  const prisma = new PrismaClient()
 
         if (z_id === null || z_id === undefined || z_id === "") {
       
@@ -146,7 +146,7 @@ import authenticationJWT from '../services/authenticationJWT'
               client,
             }
           })
-          await prisma.$disconnect()
+        //  await prisma.$disconnect()
           return products_list;
       
 
@@ -163,7 +163,7 @@ import authenticationJWT from '../services/authenticationJWT'
               z_id
             }
           })
-          await prisma.$disconnect()
+        //  await prisma.$disconnect()
           return products_list;
           
         }
@@ -204,14 +204,14 @@ import authenticationJWT from '../services/authenticationJWT'
 
 
     try {
-      const prisma = new PrismaClient()
+     // const prisma = new PrismaClient()
       const deletedProduct = await prisma.products.delete({
         where: {
           z_id
         },
       })
 
-      await prisma.$disconnect()
+    //  await prisma.$disconnect()
       return deletedProduct;
     } catch (err) {
 

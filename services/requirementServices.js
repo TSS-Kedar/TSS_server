@@ -4,12 +4,12 @@ dotenv.config();
 
 
 import masterdataServices from '../services/masterdataServices';
-import { PrismaClient } from '@prisma/client';
+//import { PrismaClient } from '@prisma/client';
 
 import datetimeService from '../services/dateTimeServices'; 
 import authenticationJWT from '../services/authenticationJWT'
 import {sendEMail} from './mail'
-
+import prisma from './db'
 const getRequirementEmail1=(requirement)=>
 {
 return  {
@@ -224,7 +224,7 @@ return  {
 
     if (!yarntype) { throw new Error('You must provide and yarntype.'); }
   
-    const prisma = new PrismaClient()
+    //const prisma = new PrismaClient()
 
 
     
@@ -296,7 +296,7 @@ let requirementUpdated = await prisma.requirements.update({
 //console.log(requirementUpdated);
 //requirementUpdated.reqid='REQ'+requirementCreated.reqnoid;
 
-      await prisma.$disconnect();
+      //await prisma.$disconnect();
       await sendEMail(getRequirementEmail(requirementUpdated))
       return requirementUpdated;
 
@@ -348,7 +348,7 @@ let requirementUpdated = await prisma.requirements.update({
         data: requirementtobeUpdated
       })
 
-      await prisma.$disconnect();
+     // await prisma.$disconnect();
       return requirementUpdated;
 
 
@@ -373,7 +373,7 @@ let requirementUpdated = await prisma.requirements.update({
 
 
       try {
-        const prisma = new PrismaClient()
+     //   const prisma = new PrismaClient()
        
 console.log('buyid',buyid)
    
@@ -388,7 +388,7 @@ console.log('buyid',buyid)
               buyid
             }
           })
-          await prisma.$disconnect()
+        //  await prisma.$disconnect()
           return requirements_list;
           
 
@@ -413,7 +413,7 @@ console.log('buyid',buyid)
                 z_id
               }
             })
-            await prisma.$disconnect()
+        //    await prisma.$disconnect()
             return filterSupplierRequirements(requirements_list,suppliers_list[0].yarntypes);
             
           }
@@ -426,7 +426,7 @@ console.log('buyid',buyid)
                client,
              }
            })
-           await prisma.$disconnect()
+      //     await prisma.$disconnect()
            return requirements_list;
        
  
@@ -444,7 +444,7 @@ console.log('buyid',buyid)
               z_id
             }
           })
-          await prisma.$disconnect()
+     //     await prisma.$disconnect()
           return requirements_list;
           
         }
@@ -500,14 +500,14 @@ return result;
 
 
     try {
-      const prisma = new PrismaClient()
+   //   const prisma = new PrismaClient()
       const deletedRequirement = await prisma.requirements.delete({
         where: {
           z_id
         },
       })
 
-      await prisma.$disconnect()
+   //   await prisma.$disconnect()
       return deletedRequirement;
     } catch (err) {
 

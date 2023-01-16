@@ -6,11 +6,12 @@ dotenv.config();
 import bcrypt from 'bcrypt';
 import jwt from 'jwt-simple';
 //import { PrismaClient } from '@prisma/client';
-import { PrismaClient } from '@prisma/client';
+//import { PrismaClient } from '@prisma/client';
 import masterdataServices from '../services/masterdataServices';
 import datetimeService from '../services/dateTimeServices'; 
 const secretKey = 'aaabbbccc';
 import fast2sms from 'fast-two-sms';
+import prisma from './db'
 //30
 
 const getUsername = async (req) =>
@@ -79,7 +80,7 @@ const verifyMobileOTPJWT = async (userData, context) => {
     throw new Error('You must provide an mobile number and mobileotp.');
   }
 
-  const prisma = new PrismaClient()
+ // const prisma = new PrismaClient()
 
 
 
@@ -105,7 +106,7 @@ const verifyMobileOTPJWT = async (userData, context) => {
       }
     })
 
-    await prisma.$disconnect()
+  //  await prisma.$disconnect()
     let validMobileotp = await bcrypt.compare(mobileotp, userFound.mobileotp);
     if (validMobileotp) {
 
@@ -137,7 +138,7 @@ const signInMobileJWT = async (userData, context) => {
     throw new Error('You must provide mobile number.');
   }
 
-  const prisma = new PrismaClient()
+  //const prisma = new PrismaClient()
 
 
 
@@ -183,7 +184,7 @@ const signInMobileJWT = async (userData, context) => {
     })
 
 
-    await prisma.$disconnect()
+ //   await prisma.$disconnect()
 
     
 
@@ -219,7 +220,7 @@ const signUpMobileJWT = async (userData, //Input is user object and request
   }
 
 
-  const prisma = new PrismaClient()
+ // const prisma = new PrismaClient()
 
 
   const userCount = await prisma.users.count({
@@ -230,14 +231,14 @@ const signUpMobileJWT = async (userData, //Input is user object and request
       mobile: userData.mobile
     }
   })
-  await prisma.$disconnect()
+//  await prisma.$disconnect()
 
   if (userCount >= 1) {
     throw new Error('Mobile number in use');
   }
   else {
     const _idGenerated = await masterdataServices.getUniqueID();
-    const prisma = new PrismaClient()
+ //   const prisma = new PrismaClient()
     const salt = await bcrypt.genSalt(10);
   //  const hashPassword = await bcrypt.hash(password, salt);
     const usertobeCreated=datetimeService.setDateUser( {
@@ -276,7 +277,7 @@ const signUpMobileJWT = async (userData, //Input is user object and request
 
 
 
-    await prisma.$disconnect()
+  //  await prisma.$disconnect()
 
 
 
@@ -310,7 +311,7 @@ const signInUsernameJWT = async (userData, context) => {
     throw new Error('You must provide an username and password.');
   }
 
-  const prisma = new PrismaClient()
+ // const prisma = new PrismaClient()
 
 
 
@@ -336,7 +337,7 @@ const signInUsernameJWT = async (userData, context) => {
       }
     })
 
-    await prisma.$disconnect()
+  //  await prisma.$disconnect()
     let validPass = await bcrypt.compare(password, userFound.password);
     if (validPass) {
 
@@ -372,7 +373,7 @@ const currentUserUsernameJWT = async (args, context) => {
     const authorization = req.headers.authorization
 
     try {
-      const prisma = new PrismaClient()
+   //   const prisma = new PrismaClient()
 
       const decoded = jwt.decode(authorization, secretKey);
 
@@ -387,7 +388,7 @@ const currentUserUsernameJWT = async (args, context) => {
         }
       })
 
-      await prisma.$disconnect()
+   //   await prisma.$disconnect()
       if (userCount == 1) {
 
         return decoded_user
@@ -426,7 +427,7 @@ const signUpUsernameJWT = async (userData, //Input is user object and request
   }
 
 
-  const prisma = new PrismaClient()
+//  const prisma = new PrismaClient()
 
 
   const userCount = await prisma.users.count({
@@ -437,14 +438,14 @@ const signUpUsernameJWT = async (userData, //Input is user object and request
       username: userData.username
     }
   })
-  await prisma.$disconnect()
+//  await prisma.$disconnect()
 
   if (userCount >= 1) {
     throw new Error('Username in use');
   }
   else {
     const _idGenerated = await masterdataServices.getUniqueID();
-    const prisma = new PrismaClient()
+ //   const prisma = new PrismaClient()
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(password, salt);
     const usertobeCreated=datetimeService.setDateUser( {
@@ -464,7 +465,7 @@ const signUpUsernameJWT = async (userData, //Input is user object and request
 
     const token = generateTokenUser(userCreated);
     userCreated.token = token;
-    await prisma.$disconnect()
+  //  await prisma.$disconnect()
     return userCreated;
   }
 }
@@ -489,14 +490,14 @@ const deleteUsername =
 
 
     try {
-      const prisma = new PrismaClient()
+  //    const prisma = new PrismaClient()
       const deleteUser = await prisma.users.delete({
         where: {
           z_id
         },
       })
 
-      await prisma.$disconnect()
+   //   await prisma.$disconnect()
       return deleteUser;
     } catch (err) {
       console.log(err)
@@ -518,7 +519,7 @@ const users = async (args, context, info) => {
   checkUser(login_username);
   const { applicationid, client, lang } = args
   try {
-    const prisma = new PrismaClient()
+   // const prisma = new PrismaClient()
     const userdocs = await prisma.users.findMany({
       where: {
         applicationid: applicationid,
@@ -528,7 +529,7 @@ const users = async (args, context, info) => {
       }
     })
 
-    await prisma.$disconnect()
+  //  await prisma.$disconnect()
     return userdocs;
 
   }
@@ -561,7 +562,7 @@ const saveUsername =
       throw new Error('You must provide an username and password.');
     }
 
-    const prisma = new PrismaClient()
+  //  const prisma = new PrismaClient()
 
     const userCount = await prisma.users.count({
       where: {
@@ -572,13 +573,13 @@ const saveUsername =
       }
     })
 
-    await prisma.$disconnect();
+ //   await prisma.$disconnect();
 
 
     if (userCount >= 1) {
 
 
-      const prisma = new PrismaClient()
+    //  const prisma = new PrismaClient()
 
       const salt = await bcrypt.genSalt(10);
       const hashPassword = await bcrypt.hash(password, salt);
@@ -602,13 +603,13 @@ const saveUsername =
         data: userTobeUpdated
       })
 
-      await prisma.$disconnect();
+  //    await prisma.$disconnect();
       return userUpdated;
 
     }
     else {
 
-      const prisma = new PrismaClient()
+     // const prisma = new PrismaClient()
       const _idGenerated = await masterdataServices.getUniqueID();
       const salt = await bcrypt.genSalt(10);
       const hashPassword = await bcrypt.hash(password, salt);
@@ -627,7 +628,7 @@ const saveUsername =
       const userCreated = await prisma.users.create({
         data: userTobeCreated
       })
-      await prisma.$disconnect();
+   //   await prisma.$disconnect();
       return userCreated;
     }
 
@@ -651,7 +652,7 @@ const saveUsername =
       throw new Error('You must provide an username and password.');
     }
 
-    const prisma = new PrismaClient()
+  //  const prisma = new PrismaClient()
 
     const userCount = await prisma.users.count({
       where: {
@@ -662,13 +663,13 @@ const saveUsername =
       }
     })
 
-    await prisma.$disconnect();
+ //   await prisma.$disconnect();
 
 
     if (userCount >= 1) {
 
 
-      const prisma = new PrismaClient()
+   //   const prisma = new PrismaClient()
 
       const salt = await bcrypt.genSalt(10);
       const hashPassword = await bcrypt.hash(password, salt);
@@ -692,13 +693,13 @@ const saveUsername =
         data: userTobeUpdated
       })
 
-      await prisma.$disconnect();
+   //   await prisma.$disconnect();
       return userUpdated;
 
     }
     else {
 
-      const prisma = new PrismaClient()
+    //  const prisma = new PrismaClient()
       const _idGenerated = await masterdataServices.getUniqueID();
       const salt = await bcrypt.genSalt(10);
       const hashPassword = await bcrypt.hash(password, salt);
@@ -717,7 +718,7 @@ const saveUsername =
       const userCreated = await prisma.users.create({
         data: userTobeCreated
       })
-      await prisma.$disconnect();
+   //   await prisma.$disconnect();
       return userCreated;
     }
 

@@ -1,7 +1,7 @@
-import { PrismaClient } from '@prisma/client'
+//import { PrismaClient } from '@prisma/client'
 //const { PrismaClient }  = require('@prisma/client');
-
-const prisma = new PrismaClient()
+import prisma from './db'
+//const prisma = new PrismaClient()
 
 
 
@@ -23,5 +23,5 @@ const prisma = new PrismaClient()
     throw e
   })
   .finally(async () => {
-    await prisma.$disconnect()
+  //  await prisma.$disconnect()
   })
