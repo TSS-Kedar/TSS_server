@@ -4,20 +4,20 @@ dotenv.config();
 
 
 import masterdataServices from '../services/masterdataServices';
-import { PrismaClient } from '@prisma/client';
+//import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import datetimeService from '../services/dateTimeServices'; 
 import authenticationJWT from '../services/authenticationJWT'
 const secretKey = 'aaabbbccc';
 import fast2sms from 'fast-two-sms';
 import {sendEMail} from './mail'
-
+import prisma from './db'
 
 const getBuyerRegEmail=(buyer)=>
 {
 return  {
-  from: "omias8055@gmail.com",
-  to: "omias8055@gmail.com,anant.thube73@gmail.com,rhishikesh.parkhi@gmail.com",
+  from: process.env.ENVIRONMENT=='DEV'? process.env.DEV_EMAILS_FROM: process.env.PROD_EMAILS_FROM,
+  to: process.env.ENVIRONMENT=='DEV'? process.env.DEV_EMAILS_TO: process.env.PROD_EMAILS_TO,
   subject: "New Buyer Registration Request Received",
   html: `<!DOCTYPE html>
   <html lang="en">
@@ -112,8 +112,8 @@ return  {
 const getBuyerApprovalEmail=(buyer)=>
 {
 return   {
-  from: "omias8055@gmail.com",
-  to: "omias8055@gmail.com,rhishikesh.parkhi@gmail.com,anant.thube73@gmail.com",
+  from: process.env.ENVIRONMENT=='DEV'? process.env.DEV_EMAILS_FROM: process.env.PROD_EMAILS_FROM,
+  to: process.env.ENVIRONMENT=='DEV'? process.env.DEV_EMAILS_TO: process.env.PROD_EMAILS_TO,
   subject: "Registration Approval",
   html: `<!DOCTYPE html>
 <html lang="en">
@@ -237,7 +237,7 @@ pan_files           } = dataJSON;
 
     if (!firstname) { throw new Error('You must provide firstname.'); }
   
-    const prisma = new PrismaClient()
+   // const prisma = new PrismaClient()
 
 
     
@@ -283,7 +283,7 @@ pan_files
 
      
 
-      await prisma.$disconnect();
+     // await prisma.$disconnect();
       await sendEMail(getBuyerRegEmail(buyerCreated))
       return buyerCreated;
 
@@ -326,7 +326,7 @@ pan_files
         data: buyertobeUpdated
       })
 
-      await prisma.$disconnect();
+    //  await prisma.$disconnect();
       return buyerUpdated;
 
 
@@ -345,9 +345,9 @@ pan_files
 
     try 
     {
-        const prisma = new PrismaClient()
+  //      const prisma = new PrismaClient()
         const result = await prisma.$queryRaw`select buyidno from buyers where z_id=${para.z_id}`
-       await prisma.$disconnect();
+   //    await prisma.$disconnect();
        return result;        
     } 
     catch (error) 
@@ -368,7 +368,7 @@ pan_files
 
 
       try {
-        const prisma = new PrismaClient()
+     //   const prisma = new PrismaClient()
 
         if (z_id === null || z_id === undefined || z_id === "") {
       
@@ -379,7 +379,7 @@ pan_files
               client,
             }
           })
-          await prisma.$disconnect()
+       //   await prisma.$disconnect()
           return buyers_list;
       
 
@@ -396,7 +396,7 @@ pan_files
               z_id
             }
           })
-          await prisma.$disconnect()
+    //      await prisma.$disconnect()
           return buyers_list;
           
         }
@@ -426,7 +426,7 @@ pan_files
 
   
         try {
-          const prisma = new PrismaClient()
+       //   const prisma = new PrismaClient()
   
    
         
@@ -438,7 +438,7 @@ pan_files
           apprstatus:'Approved'	
               }
             })
-            await prisma.$disconnect()
+      //      await prisma.$disconnect()
 
             return buyers_list;
         
@@ -476,14 +476,14 @@ pan_files
 
 
     try {
-      const prisma = new PrismaClient()
+    //  const prisma = new PrismaClient()
       const deletedBuyer = await prisma.buyers.delete({
         where: {
           z_id
         },
       })
 
-      await prisma.$disconnect()
+ //     await prisma.$disconnect()
       return deleteBuyer;
     } catch (err) {
 
@@ -511,7 +511,7 @@ lang
 
     if (!z_id) { throw new Error('Buyer ID is must.'); }
   
-    const prisma = new PrismaClient()
+    //const prisma = new PrismaClient()
 
 	
     
@@ -563,7 +563,7 @@ buyertobeApproved
     
     ,context)
 
-      await prisma.$disconnect();
+    //  await prisma.$disconnect();
       await sendEMail(getBuyerApprovalEmail({ email:result[0].email, password:'abc123', applicationid, client, lang, mobile:result[0].primarynumber, username:'BUY'+result[0].buyidno, firstname:result[0].firstname, lastname:result[0].lastname, userauthorisations:'Buyer', status:'active', z_id:'' }))
  
       return buyerUpdated;
@@ -583,7 +583,7 @@ buyertobeApproved
       throw new Error('You must provide mobile number.');
     }
   
-    const prisma = new PrismaClient()
+   // const prisma = new PrismaClient()
   
   
   
@@ -622,7 +622,7 @@ buyertobeApproved
       //   }
       // );
       await sendEMail(getOTPEmail(buyerData,mobileotp))
-      await prisma.$disconnect()
+      //await prisma.$disconnect()
 
       return hashmobileotp;
   
@@ -634,8 +634,8 @@ buyertobeApproved
 const getOTPEmail =(buyer,mobileotp) =>{
 
   return  {
-    from: "omias8055@gmail.com",
-    to: "omias8055@gmail.com,rhishikesh.parkhi@gmail.com,anant.thube73@gmail.com",
+    from: process.env.ENVIRONMENT=='DEV'? process.env.DEV_EMAILS_FROM: process.env.PROD_EMAILS_FROM,
+    to: process.env.ENVIRONMENT=='DEV'? process.env.DEV_EMAILS_TO: process.env.PROD_EMAILS_TO,
     subject: "Your OTP",
     html: `<!DOCTYPE html>
     <html lang="en">

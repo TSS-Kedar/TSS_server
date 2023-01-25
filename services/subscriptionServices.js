@@ -5,10 +5,10 @@ import webpush from 'web-push'
 
 
 import masterdataServices from '../services/masterdataServices';
-import { PrismaClient } from '@prisma/client';
+//import { PrismaClient } from '@prisma/client';
 import datetimeService from '../services/dateTimeServices'; 
 import authenticationJWT from '../services/authenticationJWT'
-
+import prisma from './db'
 //import { PrismaClient, Prisma } from '@prisma/client'
 
 
@@ -48,11 +48,11 @@ import authenticationJWT from '../services/authenticationJWT'
 
 
 
-      const prisma = new PrismaClient()
+ //     const prisma = new PrismaClient()
       const subscriptionCreated = await prisma.subscriptions.create({
         data: subscriptiontobeCreated
       })
-      await prisma.$disconnect();
+  //    await prisma.$disconnect();
       return subscriptionCreated;
      } catch (err) {
       console.log(err)
@@ -76,7 +76,7 @@ import authenticationJWT from '../services/authenticationJWT'
         data: subscriptiontobeUpdated
       })
 
-      await prisma.$disconnect();
+    //  await prisma.$disconnect();
       return subscriptionUpdated;
 
 
@@ -106,14 +106,14 @@ import authenticationJWT from '../services/authenticationJWT'
 
 
     try {
-      const prisma = new PrismaClient()
+  //    const prisma = new PrismaClient()
       const deletedSubscription = await prisma.subscriptions.delete({
         where: {
           z_id
         },
       })
 
-      await prisma.$disconnect()
+//      await prisma.$disconnect()
       return deletedSubscription;
     } catch (err) {
       console.log(err)
@@ -133,7 +133,7 @@ import authenticationJWT from '../services/authenticationJWT'
 
 
       try {
-        const prisma = new PrismaClient()
+     //   const prisma = new PrismaClient()
 
         if (z_id === null || z_id === undefined || z_id === "") {
       
@@ -144,7 +144,7 @@ import authenticationJWT from '../services/authenticationJWT'
               client,
             }
           })
-          await prisma.$disconnect()
+      //    await prisma.$disconnect()
           return subscriptions_list;
       
 
@@ -161,7 +161,7 @@ import authenticationJWT from '../services/authenticationJWT'
               z_id
             }
           })
-          await prisma.$disconnect()
+        //  await prisma.$disconnect()
           return recommendations_list;
           
         }

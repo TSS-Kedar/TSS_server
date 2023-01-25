@@ -4,9 +4,9 @@ dotenv.config();
 
 
 import masterdataServices from '../services/masterdataServices';
-import { PrismaClient } from '@prisma/client';
+//import { PrismaClient } from '@prisma/client';
 import datetimeService from '../services/dateTimeServices'; 
-
+import prisma from './db'
 
 
   const  saveBid =
@@ -37,7 +37,7 @@ import datetimeService from '../services/dateTimeServices';
     if (!reqid) { throw new Error('You must provide reqid.'); }
     if (!supid) { throw new Error('You must provide supid.'); }
   
-    const prisma = new PrismaClient()
+    //const prisma = new PrismaClient()
 
 
     
@@ -116,7 +116,7 @@ const bidUpdated = await prisma.bids.update({
 
 
 
-      await prisma.$disconnect();
+     // await prisma.$disconnect();
       return bidUpdated;
 
 
@@ -145,7 +145,7 @@ const bidUpdated = await prisma.bids.update({
         data: bidtobeUpdated
       })
 
-      await prisma.$disconnect();
+    //  await prisma.$disconnect();
       return bidUpdated;
 
 
@@ -170,7 +170,7 @@ const bidUpdated = await prisma.bids.update({
 
 
       try {
-        const prisma = new PrismaClient()
+      //  const prisma = new PrismaClient()
      
 
        if (z_id === null || z_id === undefined || z_id === "") {
@@ -186,7 +186,7 @@ const bidUpdated = await prisma.bids.update({
               reqid
             }
           })
-          await prisma.$disconnect()
+        //  await prisma.$disconnect()
           return bids_list;
         }
         else
@@ -201,7 +201,7 @@ const bidUpdated = await prisma.bids.update({
               supid
             }
           })
-          await prisma.$disconnect()
+     //     await prisma.$disconnect()
           return bids_list;
 
         }
@@ -218,7 +218,7 @@ const bidUpdated = await prisma.bids.update({
               z_id
             }
           })
-          await prisma.$disconnect()
+        //  await prisma.$disconnect()
           return bids_list;
       
         }
@@ -259,14 +259,14 @@ const bidUpdated = await prisma.bids.update({
 
 
     try {
-      const prisma = new PrismaClient()
+     // const prisma = new PrismaClient()
       const deletedBid = await prisma.bids.delete({
         where: {
           z_id
         },
       })
 
-      await prisma.$disconnect()
+     // await prisma.$disconnect()
       return deletedBid;
     } catch (err) {
 
@@ -294,7 +294,7 @@ const acceptBid =
 
 
     try {
-      const prisma = new PrismaClient()
+     // const prisma = new PrismaClient()
      
 
       const bidtobeUpdated1=datetimeService.setDateUser(  {
@@ -356,7 +356,7 @@ console.log(bidUpdated.reqid)
 
 
 
-      await prisma.$disconnect()
+    //  await prisma.$disconnect()
       return bidUpdated;
     } catch (err) {
 

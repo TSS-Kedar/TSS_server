@@ -4,10 +4,10 @@ dotenv.config();
 
 
 import masterdataServices from '../services/masterdataServices';
-import { PrismaClient } from '@prisma/client';
+//import { PrismaClient } from '@prisma/client';
 import datetimeService from '../services/dateTimeServices'; 
 import authenticationJWT from '../services/authenticationJWT'
-
+import prisma from './db'
 //import { PrismaClient, Prisma } from '@prisma/client'
 
 
@@ -23,7 +23,7 @@ import authenticationJWT from '../services/authenticationJWT'
 
     if (!fileid) { throw new Error('You must provide fileid'); }
   
-    const prisma = new PrismaClient()
+   // const prisma = new PrismaClient()
 
 
     
@@ -43,7 +43,7 @@ import authenticationJWT from '../services/authenticationJWT'
       const fileCreated = await prisma.files.create({
         data: filetobeCreated
       })
-      await prisma.$disconnect();
+    //  await prisma.$disconnect();
       return fileCreated;
 
 
@@ -78,7 +78,7 @@ import authenticationJWT from '../services/authenticationJWT'
         data: filetobeUpdated
       })
 
-      await prisma.$disconnect();
+   //   await prisma.$disconnect();
       return fileUpdated;
 
 
@@ -106,7 +106,7 @@ import authenticationJWT from '../services/authenticationJWT'
     if (!z_id) { throw new Error('You must provide fileid'); }
   
     try {
-    const prisma = new PrismaClient()
+   // const prisma = new PrismaClient()
 
 
 
@@ -123,7 +123,7 @@ import authenticationJWT from '../services/authenticationJWT'
         data: filetobeUpdated
       })
 
-      await prisma.$disconnect();
+     // await prisma.$disconnect();
       return fileUpdated;
     } catch (err) {
       console.log(err)
@@ -160,14 +160,14 @@ import authenticationJWT from '../services/authenticationJWT'
 
 
     try {
-      const prisma = new PrismaClient()
+    //  const prisma = new PrismaClient()
       const deletedFile = await prisma.files.delete({
         where: {
           z_id
         },
       })
 
-      await prisma.$disconnect()
+    //  await prisma.$disconnect()
       return deletedFile;
     } catch (err) {
       console.log(err)

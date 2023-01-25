@@ -4,8 +4,8 @@ dotenv.config();
 
 
 import masterdataServices from '../services/masterdataServices';
-import { PrismaClient } from '@prisma/client';
-
+//import { PrismaClient } from '@prisma/client';
+import prisma from './db'
 import datetimeService from '../services/dateTimeServices'; 
 import authenticationJWT from '../services/authenticationJWT'
 import {deleteSubscription,saveSubscription,subscriptions,sendNotification} from '../services/subscriptionServices'; 
@@ -115,7 +115,7 @@ const  sendRecommendationNotification =async ({ recommendation} ,context )=>
 
     if (!name) { throw new Error('You must provide and name.'); }
   
-    const prisma = new PrismaClient()
+   // const prisma = new PrismaClient()
 
 
     
@@ -152,7 +152,7 @@ const  sendRecommendationNotification =async ({ recommendation} ,context )=>
       const recommendationCreated = await prisma.recommendations.create({
         data: recotobeCreated
       })
-      await prisma.$disconnect();
+    //  await prisma.$disconnect();
       return recommendationCreated;
 
 
@@ -188,7 +188,7 @@ const  sendRecommendationNotification =async ({ recommendation} ,context )=>
         data: recotobeUpdated
       })
 
-      await prisma.$disconnect();
+    //  await prisma.$disconnect();
       return recommendationUpdated;
 
 
@@ -213,7 +213,7 @@ const  sendRecommendationNotification =async ({ recommendation} ,context )=>
 
 
       try {
-        const prisma = new PrismaClient()
+     //   const prisma = new PrismaClient()
 
         if (z_id === null || z_id === undefined || z_id === "") {
       
@@ -224,7 +224,7 @@ const  sendRecommendationNotification =async ({ recommendation} ,context )=>
               client,
             }
           })
-          await prisma.$disconnect()
+    //      await prisma.$disconnect()
           return recommendations_list;
       
 
@@ -241,7 +241,7 @@ const  sendRecommendationNotification =async ({ recommendation} ,context )=>
               z_id
             }
           })
-          await prisma.$disconnect()
+       //   await prisma.$disconnect()
           return recommendations_list;
           
         }
@@ -282,14 +282,14 @@ const  sendRecommendationNotification =async ({ recommendation} ,context )=>
 
 
     try {
-      const prisma = new PrismaClient()
+    //  const prisma = new PrismaClient()
       const deletedRecommendation = await prisma.recommendations.delete({
         where: {
           z_id
         },
       })
 
-      await prisma.$disconnect()
+   //   await prisma.$disconnect()
       return deletedRecommendation;
     } catch (err) {
 

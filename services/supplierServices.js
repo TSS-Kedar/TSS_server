@@ -4,8 +4,8 @@ dotenv.config();
 
 
 import masterdataServices from '../services/masterdataServices';
-import { PrismaClient } from '@prisma/client';
-
+//import { PrismaClient } from '@prisma/client';
+import prisma from './db'
 import datetimeService from '../services/dateTimeServices'; 
 import authenticationJWT from '../services/authenticationJWT'
 
@@ -13,8 +13,8 @@ import {sendEMail} from './mail'
 const getSupplierRegistrationEmail=(supplier)=>
 {
 return   {
-    from: "omias8055@gmail.com",
-    to: "omias8055@gmail.com,rhishikesh.parkhi@gmail.com,anant.thube73@gmail.com",
+    from: process.env.ENVIRONMENT=='DEV'? process.env.DEV_EMAILS_FROM: process.env.PROD_EMAILS_FROM,
+    to: process.env.ENVIRONMENT=='DEV'? process.env.DEV_EMAILS_TO: process.env.PROD_EMAILS_TO,
     subject: "Supplier Registration",
     html: `<!DOCTYPE html>
 	<html lang="en">
@@ -107,7 +107,7 @@ pan_files,yarntypes           } = dataJSON;
 
     if (!firstname) { throw new Error('You must provide firstname.'); }
   
-    const prisma = new PrismaClient()
+  //  const prisma = new PrismaClient()
 
 
     
@@ -182,7 +182,7 @@ const supplierUpdated = await prisma.suppliers.update({
           await sendEMail(getSupplierRegistrationEmail({ email:result[0].email, password:'abc123', applicationid, client, lang, mobile:result[0].primarynumber, username:'SUP'+result[0].supnoid, firstname:result[0].firstname, lastname:result[0].lastname, userauthorisations:'Supplier', status:'active', z_id:'' }))
 
 
-      await prisma.$disconnect();
+    //  await prisma.$disconnect();
       return supplierUpdated;
 
 
@@ -225,7 +225,7 @@ yarntypes
         data: suppliertobeUpdated
       })
 
-      await prisma.$disconnect();
+     // await prisma.$disconnect();
       return supplierUpdated;
 
 
@@ -250,7 +250,7 @@ yarntypes
 
 
       try {
-        const prisma = new PrismaClient()
+     //   const prisma = new PrismaClient()
 
         if (z_id === null || z_id === undefined || z_id === "") {
       
@@ -261,7 +261,7 @@ yarntypes
               client,
             }
           })
-          await prisma.$disconnect()
+        //  await prisma.$disconnect()
           return suppliers_list;
       
 
@@ -278,7 +278,7 @@ yarntypes
               z_id
             }
           })
-          await prisma.$disconnect()
+        //  await prisma.$disconnect()
           return suppliers_list;
           
         }
@@ -319,14 +319,14 @@ yarntypes
 
 
     try {
-      const prisma = new PrismaClient()
+   //   const prisma = new PrismaClient()
       const deletedSupplier = await prisma.suppliers.delete({
         where: {
           z_id
         },
       })
 
-      await prisma.$disconnect()
+     // await prisma.$disconnect()
       return deleteSupplier;
     } catch (err) {
 
