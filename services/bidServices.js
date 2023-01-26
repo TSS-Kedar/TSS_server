@@ -366,8 +366,151 @@ console.log(bidUpdated.reqid)
   }
 
 
+  const getBidAcceptanceEmail=(requirement)=>
+  {
+  return  {
+    from: "omias8055@gmail.com",
+    to: "omias8055@gmail.com,rhishikesh.parkhi@gmail.com,anant.thube73@gmail.com",
+    subject: "Bid acceptance intimation to buyer & supplier FOR SUPPLIER",
+    html: `<!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            .card {
+                text-align: center;
+                width: 100%;
+                background-color: rgb(223, 243, 223);
+            }
+            
+            .button {
+                background-color: rgb(12, 101, 129);
+                color: aliceblue;
+                padding: 10px;
+                border-radius: 10px;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="card">
+            <h3>Bid acceptance intimation to buyer & supplier FOR SUPPLIER</h3>
+            <h> Hello Dear,<b>{NAME}</b></h><br />
+            <a>Hurray! Your bid is accepted!</a><br />
+            <a>[ bid details ]</a> <br />
+            <a>Please fulfil the order as conveyed in the bid.</a> <br />
+            <a>For support, feel free to mail us at
+            support@textilesourcingsolutions.in</a
+          >
+    
+          <a></a>
+        </div>
+    </body>
+    
+    </html>`,
+  };
+  }
+  
+  const getBidSubmissionEmail=(requirement)=>
+  {
+  return  {
+    from: "omias8055@gmail.com",
+    to: "omias8055@gmail.com,rhishikesh.parkhi@gmail.com,anant.thube73@gmail.com",
+    subject: "Bid submission intimation by supplier",
+    html: `<!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            .card {
+                text-align: center;
+                width: 100%;
+                background-color: rgb(223, 243, 223);
+            }
+            
+            .button {
+                background-color: rgb(12, 101, 129);
+                color: aliceblue;
+                padding: 10px;
+                border-radius: 10px;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="card">
+            <h3>Bid submission intimation by supplier</h3>
+            <h> Hello Dear,<b>{NAME}</b></h><br />
+            <a>Your bid was successfully submitted!</a><br />
+            <a>We will update you when your bid is accepted by the buyer.</a><br>
+            <a>[ bid details ]</a> <br />
+            <a>For support, feel free to mail us at
+            support@textilesourcingsolutions.in</a
+          >
+    
+          <a></a>
+        </div>
+    </body>
+    
+    </html>`,
+  };
+  }
 
 
 
+
+  const getBidCompletionEmail=(requirement)=>
+  {
+  return  {
+    from: "omias8055@gmail.com",
+    to: "omias8055@gmail.com,rhishikesh.parkhi@gmail.com,anant.thube73@gmail.com",
+    subject: "FOR BUYER",
+    html: `<!DOCTYPE html>
+    <html lang="en">
+    
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            .card {
+                text-align: center;
+                width: 100%;
+                background-color: rgb(223, 243, 223);
+            }
+            
+            .button {
+                background-color: rgb(12, 101, 129);
+                color: aliceblue;
+                padding: 10px;
+                border-radius: 10px;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div class="card">
+            <h3>FOR BUYER</h3>
+            <h> Hello Dear,<b>{NAME}</b></h><br />
+            <a>Hurray! Your bid is completed!</a><br />
+            <a>[ bid details ]</a> <br />
+            <a>Your order will be fulfilled as conveyed in the bid.</a> <br />
+            <a>For support, feel free to mail us at
+            support@textilesourcingsolutions.in</a
+          >
+    
+          <a></a>
+        </div>
+    </body>
+    
+    </html>`,
+  };
+  }
 
   export default {deleteBid,bids,saveBid,acceptBid}
