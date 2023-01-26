@@ -44,27 +44,9 @@ import prisma from './db'
 
     if (z_id === null || z_id === undefined || z_id === "" ) {
 
-      console.log('here')
+      
       const _idGenerated = await masterdataServices.getUniqueID();
 
-    console.log('data',{
-      z_id: _idGenerated,
-      applicationid ,
-      client ,
-      lang ,
-      t_id ,
-      supid,
-      reqid,
-      amount1,
-      amount2,
-      supremarks,
-      uombid,
-      paymenttermsbid,
-      testcertificate_files,
-      bcicertificate_files,
-      status
-         
-    })
 
       const bidtobeCreated=datetimeService.setDateUser( {
         z_id: _idGenerated,
@@ -85,11 +67,11 @@ import prisma from './db'
         status
            
       },'I',login_username);
-      console.log('****bidtobeCreated',bidtobeCreated)
+
       const bidCreated = await prisma.bids.create({
         data: bidtobeCreated
       })
-      console.log('****bidCreated',bidCreated)
+ 
       const result = await bids({z_id:bidCreated.z_id,
         applicationid,
         client,
@@ -97,7 +79,7 @@ import prisma from './db'
     
 
 
-        console.log('****result',result)
+
 
 
 const bidUpdated = await prisma.bids.update({
@@ -158,7 +140,22 @@ const bidUpdated = await prisma.bids.update({
   }
 
 
+ const bids_with_supplierinfo = async (bids) =>{
+  for (var i = 0; i < bids.length; i++) {
 
+    let supplier=await prisma.suppliers.findMany({
+      where: {
+        applicationid: bids[i].applicationid,
+        lang :bids[i].lang,
+        client:bids[i].client,
+        supid :bids[i].supid
+            }
+          })
+          bids[i].supplier = supplier[0];
+          bids[i].supplier_name=supplier[0].firstname+' '+supplier[0].lastname + '(' + supplier[0].supid  +')'
+      }
+    return bids;
+ }
 
 
 
@@ -187,6 +184,7 @@ const bidUpdated = await prisma.bids.update({
             }
           })
         //  await prisma.$disconnect()
+        console.log('1--',await bids_with_supplierinfo(bids_list));
           return bids_list;
         }
         else
@@ -202,6 +200,7 @@ const bidUpdated = await prisma.bids.update({
             }
           })
      //     await prisma.$disconnect()
+     console.log('2--',bids_list)
           return bids_list;
 
         }
@@ -219,6 +218,7 @@ const bidUpdated = await prisma.bids.update({
             }
           })
         //  await prisma.$disconnect()
+        console.log('3--',bids_list)
           return bids_list;
       
         }

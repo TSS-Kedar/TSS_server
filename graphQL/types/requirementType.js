@@ -34,6 +34,106 @@ type oFileType
     }
 
 
+    # SupplierType Type
+    type SupplierType
+    {       
+z_id	: String,
+applicationid	: String,
+client	: String,
+lang	: String,
+t_id	: String,
+supid	: String,
+supidno : String,
+yarntypes : String,
+firstname	: String,
+lastname	: String,
+country	: String,
+city	: String,
+inbusinesssince	: String,
+email	: String,
+primarynumber	: String,
+addemail	: String,
+addnumber	: String,
+addemailnumber	: String,
+website	: String,
+companyname	: String,
+accounttype	: String,
+category	: String,
+address	: String,
+completeaddress	: String,
+gstnumber	: String,
+gst_files	:   [oFileType],
+tannumber	: String,
+businesspannumber	: String,
+pan_files	:   [oFileType],
+cdate	: String,
+ctime	: String,
+cuser	: String,
+udate	: String,
+utime	: String,
+uuser	: String,
+ddate	: String,
+dtime	: String,
+duser	: String,
+isdel	: String
+
+    }
+
+
+
+    # BuyerType Type
+    type BuyerType
+    {       
+z_id	: String,
+applicationid	: String,
+client	: String,
+lang	: String,
+t_id	: String,
+buyid	: String,
+buyidno : String,
+firstname	: String,
+lastname	: String,
+country	: String,
+city	: String,
+inbusinesssince	: String,
+email	: String,
+primarynumber	: String,
+addemail	: String,
+addnumber	: String,
+addemailnumber	: String,
+website	: String,
+companyname	: String,
+accounttype	: String,
+category	: String,
+address	: String,
+completeaddress	: String,
+gstnumber	: String,
+gst_files	:   [oFileType],
+tannumber	: String,
+businesspannumber	: String,
+pan_files	:   [oFileType],
+apprstatus  : String,
+apprdate	: String,
+apprtime	: String,
+appruser	: String,
+verificationstatus    : String,
+verificationdate	    : String,
+verificationtime	    : String,
+verificationuser	    : String,
+cdate	: String,
+ctime	: String,
+cuser	: String,
+udate	: String,
+utime	: String,
+uuser	: String,
+ddate	: String,
+dtime	: String,
+duser	: String,
+isdel	: String
+
+    }
+
+
     # input requirement Type
     input inputRequirementType
     {       z_id: String,
@@ -111,6 +211,7 @@ type oFileType
             blendtype: String,
             reqid:   String, 
             buyid:   String,
+            supid : String,
             yarncsp:   String,
             deliverysch:   String,
             reqqty:   String,
@@ -135,7 +236,11 @@ type oFileType
             ddate       :   String,
             dtime       :   String,
             duser       :   String,
-            isdeleted   :   String
+            isdeleted   :   String,
+            buyer_name:   String,
+            supplier_name : String,
+            buyer:   BuyerType,
+            supplier : SupplierType
     }
     # Query Type
     type Query

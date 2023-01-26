@@ -23,7 +23,50 @@ type oFileType
     filetype: String,
     filesize: String
 }
+# SupplierType Type
+    type SupplierType
+    {       
+z_id	: String,
+applicationid	: String,
+client	: String,
+lang	: String,
+t_id	: String,
+supid	: String,
+supidno : String,
+yarntypes : String,
+firstname	: String,
+lastname	: String,
+country	: String,
+city	: String,
+inbusinesssince	: String,
+email	: String,
+primarynumber	: String,
+addemail	: String,
+addnumber	: String,
+addemailnumber	: String,
+website	: String,
+companyname	: String,
+accounttype	: String,
+category	: String,
+address	: String,
+completeaddress	: String,
+gstnumber	: String,
+gst_files	:   [oFileType],
+tannumber	: String,
+businesspannumber	: String,
+pan_files	:   [oFileType],
+cdate	: String,
+ctime	: String,
+cuser	: String,
+udate	: String,
+utime	: String,
+uuser	: String,
+ddate	: String,
+dtime	: String,
+duser	: String,
+isdel	: String
 
+    }
 
     # Bid Type Type
     type BidType
@@ -58,7 +101,8 @@ ddate	: String,
 dtime	: String,
 duser	: String,
 isdel	: String
-
+supplier: SupplierType,
+supplier_name: String
     }
 
 

@@ -361,7 +361,48 @@ let requirementUpdated = await prisma.requirements.update({
   }
 
 
+  const requirements_with_supplier_buyer_info = async (requirements) =>{
+    for (var i = 0; i < requirements.length; i++) {
+      console.log(requirements[i].reqid,requirements[i].supid,requirements[i].buyid)
+   if(requirements[i].supid!=null)
+   {
 
+      let supplier=await prisma.suppliers.findMany({
+        where: {
+          applicationid: requirements[i].applicationid,
+          lang :requirements[i].lang,
+          client:requirements[i].client,
+          supid :requirements[i].supid
+              }
+            })
+            requirements[i].supplier = supplier[0];
+            requirements[i].supplier_name=supplier[0].firstname+' '+supplier[0].lastname + '(' + supplier[0].supid  +')'
+        }
+
+      
+
+        if(requirements[i].buyid!=null)
+        {
+
+           let buyer=await prisma.buyers.findMany({
+             where: {
+               applicationid: requirements[i].applicationid,
+               lang :requirements[i].lang,
+               client:requirements[i].client,
+               buyid :requirements[i].buyid
+                   }
+                 })
+                 requirements[i].buyer = buyer[0];
+                 requirements[i].buyer_name=buyer[0].firstname+' '+buyer[0].lastname + '(' + buyer[0].buyid  +')'
+             }
+
+
+
+
+      
+      }
+      return requirements;
+   }
 
 
 
@@ -375,7 +416,7 @@ let requirementUpdated = await prisma.requirements.update({
       try {
      //   const prisma = new PrismaClient()
        
-console.log('buyid',buyid)
+
    
          if(buyid)
         {
@@ -389,12 +430,12 @@ console.log('buyid',buyid)
             }
           })
         //  await prisma.$disconnect()
-          return requirements_list;
+          return await requirements_with_supplier_buyer_info(requirements_list);
           
 
         }else if(supid) {
 
-          console.log('Supplier Id ***************',supid)
+        
 
           const suppliers_list = await prisma.suppliers.findMany({
             where: {
@@ -427,7 +468,7 @@ console.log('buyid',buyid)
              }
            })
       //     await prisma.$disconnect()
-           return requirements_list;
+           return await requirements_with_supplier_buyer_info(requirements_list);
        
  
          
@@ -445,7 +486,7 @@ console.log('buyid',buyid)
             }
           })
      //     await prisma.$disconnect()
-          return requirements_list;
+          return await requirements_with_supplier_buyer_info(requirements_list);
           
         }
 
