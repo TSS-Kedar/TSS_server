@@ -73,8 +73,8 @@ return   {
 
      const {login_username} =context;
      
-    // authenticationJWT.checkUser(login_username);
-     console.log(dataJSON)
+     authenticationJWT.checkUser(login_username);
+
     const {   z_id,
 applicationid,
 client,
@@ -246,7 +246,7 @@ yarntypes
     const { applicationid, client, lang, z_id } = args
   
     const {login_username} =context;
-    //authenticationJWT.checkUser(login_username);
+    authenticationJWT.checkUser(login_username);
 
 
       try {
@@ -313,7 +313,7 @@ yarntypes
   ) => {
 
     const {login_username} =context;
-   // authenticationJWT.checkUser(login_username);
+    authenticationJWT.checkUser(login_username);
 
     const { applicationid, client, lang, username, z_id } =dataJSON;
 

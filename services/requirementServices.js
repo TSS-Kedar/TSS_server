@@ -281,7 +281,7 @@ return  {
 
      const {login_username} =context;
      
-    // authenticationJWT.checkUser(login_username);
+     authenticationJWT.checkUser(login_username);
 
     const { applicationid, client, lang, z_id, t_id,
         yarntype          ,
@@ -459,7 +459,7 @@ let requirementUpdated = await prisma.requirements.update({
 
   const requirements_with_supplier_buyer_info = async (requirements) =>{
     for (var i = 0; i < requirements.length; i++) {
-      console.log(requirements[i].reqid,requirements[i].supid,requirements[i].buyid)
+    //  console.log(requirements[i].reqid,requirements[i].supid,requirements[i].buyid)
    if(requirements[i].supid!=null)
    {
 
@@ -506,7 +506,7 @@ let requirementUpdated = await prisma.requirements.update({
     const { applicationid, client, lang, z_id,buyid ,supid} = args
  
     const {login_username} =context;
-    //authenticationJWT.checkUser(login_username);
+    authenticationJWT.checkUser(login_username);
 
 
       try {
@@ -631,7 +631,7 @@ return result;
   ) => {
 
     const {login_username} =context;
-   // authenticationJWT.checkUser(login_username);
+    authenticationJWT.checkUser(login_username);
 
     const { applicationid, client, lang, username, z_id } =dataJSON;
 

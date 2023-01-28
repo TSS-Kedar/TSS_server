@@ -414,6 +414,70 @@ const currentUserUsernameJWT = async (args, context) => {
 }
 
 
+const getLoginUserUsernameJWT = async (args, context) => {
+
+  const req = context.request;
+  if (req.headers && req.headers.authorization) {
+
+
+    if (req.headers.authorization == 'null' || req.headers.authorization.length == 4) {
+
+
+      throw new Error('User not signedin');
+
+    }
+
+    const authorization = req.headers.authorization
+
+    try {
+   //   const prisma = new PrismaClient()
+
+      const decoded = jwt.decode(authorization, secretKey);
+
+      const decoded_user = decoded.sub;
+
+      const userCount = await prisma.users.count({
+        where: {
+          applicationid: decoded_user.applicationid,
+          lang: decoded_user.lang,
+          client: decoded_user.client,
+          username: decoded_user.username
+        }
+      })
+
+   //   await prisma.$disconnect()
+      if (userCount == 1) {
+
+        return decoded_user
+      }
+      else {
+
+        throw new Error('Invalid token');
+      }
+
+    }
+    catch (e) {
+
+
+      throw new Error('Invalid token');
+    }
+  }
+  else {
+
+    throw new Error('User not signedin');
+
+  }
+
+}
+
+
+
+
+
+
+
+
+
 
 const signUpUsernameJWT = async (userData, //Input is user object and request
   context) => {

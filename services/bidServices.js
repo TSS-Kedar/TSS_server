@@ -7,14 +7,14 @@ import masterdataServices from '../services/masterdataServices';
 //import { PrismaClient } from '@prisma/client';
 import datetimeService from '../services/dateTimeServices'; 
 import prisma from './db'
-
+import authenticationJWT from '../services/authenticationJWT'
 
   const  saveBid =
   async (dataJSON,context) => {
 
      const {login_username} =context;
      
-    // authenticationJWT.checkUser(login_username);
+     authenticationJWT.checkUser(login_username);
 
     const {  applicationid ,
         client ,
@@ -163,7 +163,7 @@ const bidUpdated = await prisma.bids.update({
     const { applicationid, client, lang, z_id ,supid,reqid} = args
   
     const {login_username} =context;
-    //authenticationJWT.checkUser(login_username);
+    authenticationJWT.checkUser(login_username);
 
 
       try {
@@ -172,9 +172,9 @@ const bidUpdated = await prisma.bids.update({
 
        if (z_id === null || z_id === undefined || z_id === "") {
 
-        console.log('******1',supid,reqid)
+       // console.log('******1',supid,reqid)
         if (supid === null || supid === undefined || supid === "") {
-          console.log('only reqid ',supid)
+       //   console.log('only reqid ',supid)
          const bids_list = await prisma.bids.findMany({
             where: {
               applicationid,
@@ -184,8 +184,8 @@ const bidUpdated = await prisma.bids.update({
             }
           })
         //  await prisma.$disconnect()
-        console.log('1--',await bids_with_supplierinfo(bids_list));
-          return bids_list;
+        //console.log('1--',await bids_with_supplierinfo(bids_list));
+          return await bids_with_supplierinfo(bids_list);
         }
         else
         {
@@ -200,15 +200,15 @@ const bidUpdated = await prisma.bids.update({
             }
           })
      //     await prisma.$disconnect()
-     console.log('2--',bids_list)
-          return bids_list;
+    // console.log('2--',bids_list)
+          return await bids_with_supplierinfo(bids_list);
 
         }
 
         
         }
         else{
-          console.log('total else zid')
+        //  console.log('total else zid')
           const bids_list = await prisma.bids.findMany({
             where: {
               applicationid,
@@ -218,8 +218,8 @@ const bidUpdated = await prisma.bids.update({
             }
           })
         //  await prisma.$disconnect()
-        console.log('3--',bids_list)
-          return bids_list;
+      //  console.log('3--',bids_list)
+          return await bids_with_supplierinfo(bids_list);
       
         }
 
@@ -253,7 +253,7 @@ const bidUpdated = await prisma.bids.update({
   ) => {
 
     const {login_username} =context;
-   // authenticationJWT.checkUser(login_username);
+    authenticationJWT.checkUser(login_username);
 
     const { applicationid, client, lang, username, z_id } =dataJSON;
 
@@ -288,7 +288,7 @@ const acceptBid =
   ) => {
 
     const {login_username} =context;
-   // authenticationJWT.checkUser(login_username);
+    authenticationJWT.checkUser(login_username);
 
     const { applicationid, client, lang, username, z_id } =dataJSON;
 
