@@ -231,7 +231,7 @@ gstnumber,
 gst_files,
 tannumber,
 businesspannumber,
-pan_files           } = dataJSON;
+pan_files  ,password         } = dataJSON;
 
 
 

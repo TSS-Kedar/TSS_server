@@ -708,6 +708,7 @@ const saveUsername =
     context
   ) => {
 
+    console.log('userData',userData)
 
     const { email, password, applicationid, client, lang, mobile, username, firstname, lastname, userauthorisations, status, z_id } = userData;
     const {login_username} =context;
@@ -748,17 +749,55 @@ const saveUsername =
         firstname, lastname, userauthorisations, status
       },"U",login_username);
 
-      const userUpdated = await prisma.users.update({
+      if(z_id)
+      {
+        console.log('z_id',z_id)
+        const userUpdated = await prisma.users.update({
 
-        where: {
+          where: {
+  
+            z_id
+          },
+          data: userTobeUpdated
+        })
+        return userUpdated;
+      }
+      else
+      {
+        console.log('fnding unique',{
+  
+          client,
+          lang,
+          applicationid,
+          username
+        })
+        const user_z_id = await prisma.users.findFirst({
 
-          z_id
-        },
-        data: userTobeUpdated
-      })
+          where: {
+  
+            client,
+            lang,
+            applicationid,
+            username
+          }
+        })
+        console.log('username',username)
+        console.log('user_z_id',user_z_id)
+        const userUpdated = await prisma.users.update({
+
+          where: {
+  
+            z_id:user_z_id.z_id
+          },
+          data: userTobeUpdated
+        })
+        console.log('userUpdated',userUpdated)
+        return userUpdated;
+
+      }
 
    //   await prisma.$disconnect();
-      return userUpdated;
+  
 
     }
     else {

@@ -70,7 +70,7 @@ return   {
 
   const  saveSupplier =
   async (dataJSON,context) => {
-
+console.log(dataJSON)
      const {login_username} =context;
      
      authenticationJWT.checkUser(login_username);
@@ -101,7 +101,7 @@ gstnumber,
 gst_files,
 tannumber,
 businesspannumber,
-pan_files,yarntypes           } = dataJSON;
+pan_files,yarntypes ,password          } = dataJSON;
 
 
 
@@ -176,10 +176,10 @@ const supplierUpdated = await prisma.suppliers.update({
 
 
       await authenticationJWT.saveUsername1(
-        { email:result[0].email, password:'abc123', applicationid, client, lang, mobile:result[0].primarynumber, username:'SUP'+result[0].supnoid, firstname:result[0].firstname, lastname:result[0].lastname, userauthorisations:'Supplier', status:'active', z_id:'' }
+        { email:result[0].email, password:password, applicationid, client, lang, mobile:result[0].primarynumber, username:'SUP'+result[0].supnoid, firstname:result[0].firstname, lastname:result[0].lastname, userauthorisations:'Supplier', status:'active', z_id:'' }
           
           ,context)
-          await sendEMail(getSupplierRegistrationEmail({ email:result[0].email, password:'abc123', applicationid, client, lang, mobile:result[0].primarynumber, username:'SUP'+result[0].supnoid, firstname:result[0].firstname, lastname:result[0].lastname, userauthorisations:'Supplier', status:'active', z_id:'' }))
+          await sendEMail(getSupplierRegistrationEmail({ email:result[0].email, password:password, applicationid, client, lang, mobile:result[0].primarynumber, username:'SUP'+result[0].supnoid, firstname:result[0].firstname, lastname:result[0].lastname, userauthorisations:'Supplier', status:'active', z_id:'' }))
 
 
     //  await prisma.$disconnect();
@@ -224,6 +224,14 @@ yarntypes
         },
         data: suppliertobeUpdated
       })
+
+
+
+      await authenticationJWT.saveUsername1(
+        { email, password:password, applicationid, client, lang, mobile:primarynumber, username:supplierUpdated.supid, firstname:firstname, lastname:lastname, userauthorisations:'Supplier', status:'active', z_id:'' }
+          
+          ,context)
+          await sendEMail(getSupplierRegistrationEmail({ email:email, password:password, applicationid, client, lang, mobile:primarynumber, username:supplierUpdated.supid, firstname:firstname, lastname:lastname, userauthorisations:'Supplier', status:'active', z_id:'' }))
 
      // await prisma.$disconnect();
       return supplierUpdated;
