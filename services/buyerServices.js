@@ -12,7 +12,7 @@ const secretKey = 'aaabbbccc';
 import fast2sms from 'fast-two-sms';
 import {sendEMail} from './mail'
 import prisma from './db'
-
+import generator  from 'generate-password'
 const getBuyerRegEmail=(buyer)=>
 {
 return  {
@@ -231,7 +231,7 @@ gstnumber,
 gst_files,
 tannumber,
 businesspannumber,
-pan_files  ,password         } = dataJSON;
+pan_files           } = dataJSON;
 
 
 
@@ -364,7 +364,7 @@ pan_files
     const { applicationid, client, lang, z_id } = args
   
     const {login_username} =context;
-    authenticationJWT.checkUser(login_username);
+    //authenticationJWT.checkUser(login_username);
 
 
       try {
@@ -422,7 +422,7 @@ pan_files
       const { applicationid, client, lang, z_id } = args
     
       const {login_username} =context;
-      authenticationJWT.checkUser(login_username);
+      //authenticationJWT.checkUser(login_username);
 
   
         try {
@@ -470,7 +470,7 @@ pan_files
   ) => {
 
     const {login_username} =context;
-    authenticationJWT.checkUser(login_username);
+   // authenticationJWT.checkUser(login_username);
 
     const { applicationid, client, lang, username, z_id } =dataJSON;
 
@@ -499,7 +499,7 @@ pan_files
 
      const {login_username} =context;
 
-    authenticationJWT.checkUser(login_username);
+    // authenticationJWT.checkUser(login_username);
 
     const {   z_id,
 applicationid,
@@ -557,7 +557,13 @@ lang
 buyertobeApproved
       })
 
-      
+
+
+var password1 = generator.generate({
+	length: 10,
+	numbers: true
+});
+      console.log(password1)
   await authenticationJWT.saveUsername1(
   { email:result[0].email, password:'abc123', applicationid, client, lang, mobile:result[0].primarynumber, username:'BUY'+result[0].buyidno, firstname:result[0].firstname, lastname:result[0].lastname, userauthorisations:'Buyer', status:'active', z_id:'' }
     

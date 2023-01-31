@@ -21,6 +21,7 @@
     "express-session-passport-cleanup": "^1.0.3",
     "fast-two-sms": "^3.0.0",
     "fs": "^0.0.1-security",
+    "generate-password": "^1.7.0",
     "graphql": "^0.13.2",
     "http": "0.0.0",
     "https": "^1.0.0",
