@@ -134,7 +134,10 @@ var upload = multer({
 
 server.post('/uploadfile', upload.array('files', 6), async (req, res, next) => {
 
- 
+    //added 20230201 rvp check user token
+    const login_username=await authenticationJWT.getUsername(req); 
+    authenticationJWT.checkUser(login_username);
+  // end
 
 
   const reqFiles = [];
@@ -154,7 +157,7 @@ server.post('/uploadfile', upload.array('files', 6), async (req, res, next) => {
   try
   {
   const {filepath,fileid,filename,filetype,filesize} =  reqFiles[0];
-  const file= await fileServices.saveFile({filepath,fileid,filename,filetype,filesize},{login_username:'rvp'})    
+  const file= await fileServices.saveFile({filepath,fileid,filename,filetype,filesize},{login_username:login_username})    
   console.log(file)
         res.status(201).json({
           message: "Done upload!",
@@ -222,7 +225,10 @@ server.post(
   '/deletefile',
   async (req, res) => {
 
- 
+    //added 20230201 rvp check user token
+    const login_username=await authenticationJWT.getUsername(req); 
+    authenticationJWT.checkUser(login_username);
+  //end
 
 
  let {serverdocid}=req.body.params;
@@ -244,7 +250,7 @@ else{
   try
   {
 
-  const file= await fileServices.logicaldeleteFile({z_id:serverdocid},{login_username:'rvp'})    
+  const file= await fileServices.logicaldeleteFile({z_id:serverdocid},{login_username:login_username})    
  
        res.status(201).json({
           message: "file  deleted!",
