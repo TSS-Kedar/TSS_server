@@ -232,10 +232,10 @@ yarntypes
 
 
       await authenticationJWT.saveUsername1(
-        { email, password:password, applicationid, client, lang, mobile:primarynumber, username:supplierUpdated.supid, firstname:firstname, lastname:lastname, userauthorisations:'Supplier', status:'active', z_id:'' }
+        { email, password:'abc123', applicationid, client, lang, mobile:primarynumber, username:supplierUpdated.supid, firstname:firstname, lastname:lastname, userauthorisations:'Supplier', status:'active', z_id:'' }
           
           ,context)
-          await sendEMail(getSupplierRegistrationEmail({ email:email, password:password, applicationid, client, lang, mobile:primarynumber, username:supplierUpdated.supid, firstname:firstname, lastname:lastname, userauthorisations:'Supplier', status:'active', z_id:'' }))
+          await sendEMail(getSupplierRegistrationEmail({ email:email, password:'abc123', applicationid, client, lang, mobile:primarynumber, username:supplierUpdated.supid, firstname:firstname, lastname:lastname, userauthorisations:'Supplier', status:'active', z_id:'' }))
 
      // await prisma.$disconnect();
       return supplierUpdated;
