@@ -307,8 +307,8 @@ const signInUsernameJWT = async (userData, context) => {
   const { client, lang, applicationid, username, password, mobile, email } = userData;
 
 
-  if (!userData.username ) {
-    throw new Error('You must provide an username .');
+  if (!userData.username || !userData.password) {
+    throw new Error('You must provide an username and password.');
   }
 
  // const prisma = new PrismaClient()
@@ -486,8 +486,8 @@ const signUpUsernameJWT = async (userData, //Input is user object and request
   const { client, lang, applicationid, username, password, mobile, email } = userData;
 
 
-  if (!userData.username ) {
-    throw new Error('You must provide an username .');
+  if (!userData.username || !userData.password) {
+    throw new Error('You must provide an username and password.');
   }
 
 
