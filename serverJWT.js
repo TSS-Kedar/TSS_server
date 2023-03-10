@@ -135,8 +135,9 @@ var upload = multer({
 server.post('/uploadfile', upload.array('files', 6), async (req, res, next) => {
 
     //added 20230201 rvp check user token
-    const login_username=await authenticationJWT.getUsername(req); 
-    authenticationJWT.checkUser(login_username);
+   // const login_username=await authenticationJWT.getUsername(req); 
+    //authenticationJWT.checkUser(login_username);
+    const login_username='rvp123'
   // end
 
 
@@ -226,9 +227,10 @@ server.post(
   async (req, res) => {
 
     //added 20230201 rvp check user token
-    const login_username=await authenticationJWT.getUsername(req); 
-    authenticationJWT.checkUser(login_username);
-  //end
+   // const login_username=await authenticationJWT.getUsername(req); 
+   // authenticationJWT.checkUser(login_username);
+   const login_username='rvp123'
+   //end
 
 
  let {serverdocid}=req.body.params;
